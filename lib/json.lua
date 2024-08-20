@@ -14,9 +14,12 @@ local lunajson = require("lunajson")
 
 local json = {}
 
+---Format table
+---@param json_str string
+---@return string formatted_json
 local function format(json_str)
     local indent = "  "
-    local pretty_str = ""
+    local formatted_json = ""
     local level = 0
 
     local i = 1
@@ -24,28 +27,34 @@ local function format(json_str)
         local char = json_str:sub(i, i)
 
         if char == '{' or char == '[' then
-            pretty_str = pretty_str .. char .. "\n"
+            formatted_json = formatted_json .. char .. "\n"
             level = level + 1
-            pretty_str = pretty_str .. string.rep(indent, level)
+            formatted_json = formatted_json .. string.rep(indent, level)
         elseif char == '}' or char == ']' then
             level = level - 1
-            pretty_str = pretty_str .. "\n" .. string.rep(indent, level) .. char
+            formatted_json = formatted_json .. "\n" .. string.rep(indent, level) .. char
         elseif char == ',' then
-            pretty_str = pretty_str .. char .. "\n" .. string.rep(indent, level)
+            formatted_json = formatted_json .. char .. "\n" .. string.rep(indent, level)
         else
-            pretty_str = pretty_str .. char
+            formatted_json = formatted_json .. char
         end
 
         i = i + 1
     end
 
-    return pretty_str
+    return formatted_json
 end
 
+---Encode Lua table as JSON string
+---@param lua_table table
+---@return string json_str
 function json.encode(lua_table)
     return format(lunajson.encode(lua_table))
 end
 
+---Decode JSON string to Lua table
+---@param json_str string
+---@return table lua_table
 function json.decode(json_str)
     return lunajson.decode(json_str)
 end

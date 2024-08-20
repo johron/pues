@@ -8,20 +8,24 @@
  --]]
 
 --- Get user input.
--- @param msg Message before input.
--- @param type io.read input type: "n", "a", "l", "L"
+---@param msg string Message
+---@param type string {"n", "a", "l", "L"}
 function _G.input(msg, type)
 	type = type or "l"
     printb(msg)
     return io.read(type)
 end
 
--- printb -> bare print
+---Barebones print.
+---Wrapper for 'io.write'.
+---@param ... string Message(s)
 function _G.printb(...)
 	io.write(...)
 end
 
--- printf -> print formatted
+---Formatted print.
+---@param msg string Message
+---@param ... any To be concatinated
 function _G.printf(msg, ...)
 	print(string.format(msg, ...))
 end

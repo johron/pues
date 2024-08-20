@@ -1,3 +1,15 @@
+--[[ 
+ - This file is part of Pues (https://github.com/johron/pues/).
+ - Copyright (c) 2024 Johron and contributors.
+ -
+ - This source code is subject to the terms of the GNU General Public
+ - License, version 3. If a copy of the GPL was not distributed with this
+ - file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
+ - 
+ - The Lunajson json-parser itself is subject to its own terms. See the
+ - lunajson github page at: https://github.com/grafi-tt/lunajson
+ --]]
+
 local lunajson = require("lunajson")
 
 local json = {}
@@ -37,6 +49,5 @@ end
 function json.decode(json_str)
     return lunajson.decode(json_str)
 end
-
 
 return json

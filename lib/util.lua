@@ -7,26 +7,21 @@
  - file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  --]]
 
-function _G.switch(expr)
-	return function(cases)
-		setmetatable(cases, cases)
-		local f = cases[expr]
-		if f then
-			f()
-		end
-	end
-end
-
-function _G.input(message, type)
-	type = type or "*l"
-    print(message)
+--- Get user input.
+-- @param msg Message before input.
+-- @param type io.read input type: "n", "a", "l", "L"
+function _G.input(msg, type)
+	type = type or "l"
+    printb(msg)
     return io.read(type)
 end
 
-function _G.print(message)
-	io.write(message)
+-- printb -> bare print
+function _G.printb(...)
+	io.write(...)
 end
 
-function _G.println(message)
-	io.write(message .. "\n")
+-- printf -> print formatted
+function _G.printf(msg, ...)
+	print(string.format(msg, ...))
 end

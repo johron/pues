@@ -18,7 +18,7 @@ end
 
 ---Barebones print.
 ---Wrapper for 'io.write'.
----@param ... string Message(s)
+---@param ... any Message(s)
 function _G.printb(...)
 	io.write(...)
 end
@@ -28,4 +28,19 @@ end
 ---@param ... any To be concatinated
 function _G.printf(msg, ...)
 	print(string.format(msg, ...))
+end
+
+---Check if file exists
+---@param path string
+---@return boolean exists
+function io.exists(path)
+	print("path")
+	local f=io.open(path, "r")
+	if f~=nil then io.close(f) return true else return false end
+end
+
+---Read system pues configuration
+---@return table lua_table
+function _G.config()
+	
 end

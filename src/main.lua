@@ -23,16 +23,17 @@ end
 
 if #arg == 0 then
     showhelp()
-elseif #arg == 1 then
+elseif #arg >= 1 then
     local subc = arg[1]
     if subc == "--help" or subc == "-h" then
         showhelp()
+        os.exit()
     elseif subc == "--version" or subc == "-v" then
-        printf("pues version %s", version)
+        exitf("pues version %s", version)
     elseif subc == "create" then
         command.create(arg)
     else
-        printf("pues: '%s' is not a pues command. See 'pues --help'", arg[1])
+        exitf("pues: '%s' is not a pues command. See 'pues --help'", arg[1])
     end
     -- there is no next here since this will be handled by the respective command
 end

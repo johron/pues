@@ -10,42 +10,32 @@
 local lfs = require("lfs")
 local json = require("lib.json")
 
----@return table lua_table Outputted configuration as table
-local function generate_generic()
-    local table = {
-        default = "blank",
-        version = Version,
-        premade = true,
-        points = {
-            blank = {}
-        }
-    }
-
-    return table
-end
-
----@return table lua_table Outputted configuration as table
-local function generate_python()
-    local table = {
-        default = "python",
-        version = Version,
-        premade = true,
-        points = {
-            python = {
-                source = "python",
-                readme = true,
-                interpreted = true,
-                run = "python3"
+local configs = {
+    ["generic"] = function()
+        return {
+            default = "blank",
+            version = Version,
+            premade = true,
+            points = {
+                blank = {}
             }
         }
-    }
-
-    return table
-end
-
-local configs = {
-    ["generic"] = generate_generic,
-    ["python"] = generate_python,
+    end,
+    ["python"] = function()
+        return {
+            default = "python",
+            version = Version,
+            premade = true,
+            points = {
+                python = {
+                    source = "python",
+                    readme = true,
+                    interpreted = true,
+                    run = "python3"
+                }
+            }
+        }
+    end,
 }
 
 ---Writes a global config

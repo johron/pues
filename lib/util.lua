@@ -69,7 +69,7 @@ end
 ---@return table luatable
 function _G.get_config()
 	local config = io.read_file(PuesPath .. "config.json")
-	if config == nil then print("pues: global configuration not found: generating generic, please rerun") command.generate() os.exit(1) end
+	if config == nil then print("pues: global configuration not found: please see 'pues --help generate' or make your own") os.exit(1) end
 
 	return json.decode(config)
 end
@@ -84,5 +84,22 @@ function _G.assure(msg)
 		return true
 	else
 		return false
+	end
+end
+
+---Highest of two arguments
+---@param x string
+---@param y string
+---@return number result x = 1, y = 2, same = 3
+function _G.highest(x, y)
+	local nx = x:gsub("%.", "")
+	local ny = y:gsub("%.", "")
+
+	if nx == ny then
+		return 3
+	elseif nx > ny then
+		return 1
+	else
+		return 2
 	end
 end

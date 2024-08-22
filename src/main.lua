@@ -12,13 +12,15 @@ local command = require("src.command")
 require("lib.util")
 
 Version = "0.0.1"
+PuesPath = string.format("%s/.pues/", os.getenv("HOME"))
 
 local function showhelp()
     print("usage: pues [-v | --version] [-h | --help]")
     print()
     print("commands")
-    print("  create    Create a new project")
-    print("  run       Run project configured by config file")
+    print("  generate|g    Generate configuraiton from premade ones")
+    print("  create|c      Create a new project")
+    print("  run|r         Run project configured by config file")
 end
 
 if #arg == 0 then
@@ -27,11 +29,12 @@ elseif #arg >= 1 then
     local subc = arg[1]
     if subc == "--help" or subc == "-h" then
         showhelp()
+        if arg[2] then print("pues: command specific help pages not implemented") end
     elseif subc == "--version" or subc == "-v" then
-        printf("pues version %s", Version)
+        printf("Pues %s. Copyright (C) 2024 Johron", Version)
     elseif subc == "create" or subc == "c" then
         command.create(arg)
-    elseif subc == "generate" or subc == "gen" or subc == "g" then
+    elseif subc == "generate" or subc == "g" then
         command.generate(arg)
     else
         printf("pues: '%s' is not a pues command. See 'pues --help'", arg[1])

@@ -7,6 +7,7 @@
  - file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  --]]
 
+local lfs = require("lfs")
 local json = require("lib.json")
 
 ---@return table lua_table Outputted configuration as table
@@ -14,6 +15,7 @@ local function generate_generic()
     local table = {
         default = "blank",
         version = Version,
+        premade = true,
         points = {
             blank = {}
         }
@@ -22,15 +24,48 @@ local function generate_generic()
     return table
 end
 
+---@return table lua_table Outputted configuration as table
+local function generate_python()
+    local table = {
+        default = "python",
+        version = Version,
+        premade = true,
+        points = {
+            python = {
+                source = "python",
+                readme = true,
+                interpreted = true,
+                run = "python3"
+            }
+        }
+    }
+
+    return table
+end
+
 local configs = {
     ["generic"] = generate_generic,
+    ["python"] = generate_python,
 }
 
 ---Writes a global config
 ---@param lua_table table
 local function write_config(lua_table)
     local json_string = json.encode(lua_table)
-    io.
+
+    if not io.exists(PuesPath) then
+        lfs.mkdir(PuesPath)
+    end
+
+    if io.exists(PuesPath .. "config.json") then
+        local agreed = assure("Are you sure? This will override your current configuration.")
+        if not agreed then
+            print("pues: operation aborted")
+            os.exit(0)
+        end
+    end
+
+    io.write_file(PuesPath .. "config.json", json_string)
 end
 
 return function(arg)
@@ -39,7 +74,7 @@ return function(arg)
         write_config(lua_table)
     else
         local subc = arg[2]
-        if not configs[subc] then printf("pues: '%s' is not a predefined global configuration, see 'pues --help generate'", subc) os.exit() end
+        if not configs[subc] then printf("pues: '%s' is not a predefined global configuration, see 'pues --help generate'", subc) os.exit(1) end
 
         local lua_table = configs[subc]()
         write_config(lua_table)

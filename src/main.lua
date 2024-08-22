@@ -11,7 +11,7 @@ local command = require("src.command")
 
 require("lib.util")
 
-local version = "0.0.1"
+Version = "0.0.1"
 
 local function showhelp()
     print("usage: pues [-v | --version] [-h | --help]")
@@ -27,13 +27,14 @@ elseif #arg >= 1 then
     local subc = arg[1]
     if subc == "--help" or subc == "-h" then
         showhelp()
-        os.exit()
     elseif subc == "--version" or subc == "-v" then
-        exitf("pues version %s", version)
-    elseif subc == "create" then
+        printf("pues version %s", Version)
+    elseif subc == "create" or subc == "c" then
         command.create(arg)
+    elseif subc == "generate" or subc == "gen" or subc == "g" then
+        command.generate(arg)
     else
-        exitf("pues: '%s' is not a pues command. See 'pues --help'", arg[1])
+        printf("pues: '%s' is not a pues command. See 'pues --help'", arg[1])
     end
     -- there is no next here since this will be handled by the respective command
 end

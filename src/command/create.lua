@@ -7,18 +7,11 @@
  - file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  --]]
 
-local command = {}
-
----Create new project
----@param arg table Argument table
-function command.create(arg)
-    require("src.command.create")(arg)
+return function(arg)
+    if #arg >= 2 then
+        local x = get_config()
+        print(x)
+    else
+        print("pues: too few arguments")
+    end
 end
-
----Generates global config
----@param arg table|nil Argument table
-function command.generate(arg)
-    require("src.command.generate")(arg)
-end
-
-return command

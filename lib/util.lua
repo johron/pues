@@ -7,6 +7,9 @@
  - file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  --]]
 
+local json = require("lib.json")
+local command = require("src.command")
+
 --- Get user input.
 ---@param msg string Message
 ---@param type string {"n", "a", "l", "L"}
@@ -30,21 +33,6 @@ function _G.printf(msg, ...)
 	print(string.format(msg, ...))
 end
 
----Exits the program and gives print in same function
----@param ... string Exit message
-function _G.exit(...)
-	print(...)
-	os.exit()
-end
-
----Formatted exit print.
----@param msg string Exit message
----@param ... any To be concatinated
-function _G.exitf(msg, ...)
-	print(string.format(msg, ...))
-	os.exit()
-end
-
 ---Check if file exists
 ---@param path string
 ---@return boolean exists
@@ -55,7 +43,7 @@ end
 
 ---Reads a file
 ---@param path string
----@return nil|string
+---@return string|nil
 function io.read_file(path)
 	if not io.exists(path) then return nil end
 
@@ -67,11 +55,13 @@ function io.read_file(path)
 	return table.concat(lines, "\n")
 end
 
----Read system pues configuration
----@return table|nil luatable
-function _G.config()
-	local config = io.read_file(string.format("%s/.bashrcc", os.getenv("HOME")))
-	if config == nil then exit("pues: system pues configuration not found: generating... (not implemented)") end
-	print(config)
-	return {}
+
+
+---Read global configuration
+---@return table luatable
+function _G.get_config()
+	local config = io.read_file(string.format("%s/.pues/config.json", os.getenv("HOME")))
+	if config == nil then print("pues: global configuration not found: generating generic...") command.generate() os.exit() end
+
+	return json.decode(config)
 end

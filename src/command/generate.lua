@@ -28,7 +28,7 @@ local configs = {
                 source = "python",
                 readme = true,
                 interpreted = true,
-                run = "python3"
+                run = "python3 %file"
             }
         }
     }

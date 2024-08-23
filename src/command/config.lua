@@ -22,9 +22,10 @@ local function write_config(lua_table)
     io.write_file(PuesPath .. "config.json", json_string)
 end
 
+---Write a point
+---@param name string
+---@param lua_table table
 local function write_point(name, lua_table)
-    print(name, json.encode(lua_table))
-
     local json_string = json.encode(lua_table)
     io.write_file(PuesPath .. "points/" .. name .. ".json", json_string)
 end
@@ -44,6 +45,7 @@ local points = {
     }
 }
 
+---Write premade points
 local function write_points()
     if not io.exists(PuesPath) then
         lfs.mkdir(PuesPath)
@@ -69,12 +71,12 @@ return function(arg)
             default = "blank",
             version = Version,
         })
-    
+
         write_points()
     elseif subc == "default" then
         local terc = arg[3]
         if not terc then print("pues: specify what the default should be") os.exit(1) end
-        
+
         write_config({
             default = terc,
             version = Version,
@@ -87,5 +89,13 @@ return function(arg)
         end
 
         write_points()
+    elseif subc == "update" then
+        local default = get_config()["default"]
+        if not default then default = nil end
+
+        write_config({
+            default = default,
+            version = Version,
+        })
     end
 end

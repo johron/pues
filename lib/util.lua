@@ -69,7 +69,17 @@ end
 ---@return table luatable
 function _G.get_config()
 	local config = io.read_file(PuesPath .. "config.json")
-	if config == nil then print("pues: global configuration not found: please see 'pues --help config' or make your own") os.exit(1) end
+	if config == nil then print("pues: global configuration not found: please see 'pues --help config'") os.exit(1) end
+
+	return json.decode(config)
+end
+
+---Read point configuration
+---@param point string
+---@return table luatable
+function _G.get_point(point)
+	local config = io.read_file(PuesPath .. "points/" .. point .. ".json")
+	if config == nil then printf("pues: point '%s' not found: please make sure this point exists", point) os.exit(1) end
 
 	return json.decode(config)
 end

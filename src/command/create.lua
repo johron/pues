@@ -13,10 +13,12 @@ return function(arg)
     
     local default = config["default"]
     if (default == nil or string.len(default) == 0) and #arg < 2 then
-        print("pues: no point specified and default is unspecified")
+        print("pues: no point specified and default is unspecified in global config")
         os.exit(1)
     end
 
+    local point = arg[2]
+    --[[
     local chosen = arg[2]
     
     local version = config["version"]
@@ -59,5 +61,5 @@ return function(arg)
     local run = point["run"]
 
 
-    print("here")
+    print("here")]]
 end

@@ -8,32 +8,7 @@
  --]]
 
 local json = require("lib.json")
-
----Check if version is outdated
----@param version string
----@param global boolean
-local function checkVersion(version, global)
-    local result = highest(Version, version)
-    if result == 1 then
-        local agreed
-        if global then
-            agreed = assure(string.format("Are you sure? Global config has an older version (%s) than current program version (%s). Using this config can have consequences.", version, Version))
-        else
-            agreed = assure(string.format("Are you sure? Point config has an older version (%s) than current program version (%s). Using this config can have consequences.", version, Version))
-        end
-        if not agreed then
-            print("pues: operation aborted")
-            os.exit(0)
-        end
-    elseif result == 2 then
-        if global then
-            printf("pues: global config version (%s) is higher than program version (%s)", version, Version)
-        else
-            printf("pues: point config version (%s) is higher than program version (%s)", version, Version)
-        end
-        os.exit(1)
-    end
-end
+require("lib.util")
 
 return function(arg)
     local config = get_config()
@@ -56,7 +31,7 @@ return function(arg)
         os.exit(1)
     end
 
-    checkVersion(version, true)
+    check_version(version, true)
 
     local point_name = arg[2]
     if not point_name or string.len(point_name) == 0 then point_name = default end
@@ -68,7 +43,7 @@ return function(arg)
     local point = json.decode(point_json)
 
     local version = point["version"]
-    checkVersion(version, false)
+    check_version(version, false)
     
     print(json.encode(point))
     local premade = point["premade"]
@@ -81,5 +56,6 @@ return function(arg)
     -- most of theese are probably not necesarry for the project creating, most are for the run and build process, but
     -- they can be usefull for the project.json that will be made for the project, maybe the point config from ~/.pues
     -- should be copied to the project so it uses the correct things from project creation?
+
 
 end

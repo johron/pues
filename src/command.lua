@@ -21,4 +21,10 @@ function command.config(arg)
     require("src.command.config")(arg)
 end
 
+---Shows help pages
+---@param arg table|nil Argument table
+function command.help(arg)
+    require("src.command.help")(arg)
+end
+
 return command

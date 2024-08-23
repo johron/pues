@@ -14,22 +14,12 @@ require("lib.util")
 Version = "0.0.1"
 PuesPath = string.format("%s/.pues/", os.getenv("HOME"))
 
-local function showhelp()
-    print("usage: pues [-v | --version] [-h | --help]")
-    print()
-    print("commands")
-    print("  config|conf   Generate configuraitons")
-    print("  create|c      Create a new project")
-    print("  run|r         Run project configured by config file")
-end
-
 if #arg == 0 then
-    showhelp()
+    command.help(arg) -- this should execute the 'run' command if it is in a pues project
 elseif #arg >= 1 then
     local subc = arg[1]
     if subc == "--help" or subc == "-h" then
-        showhelp()
-        if arg[2] then print("pues: command specific help pages not implemented") end
+        command.help(arg)
     elseif subc == "--version" or subc == "-v" then
         printf("Pues %s. Copyright (C) 2024 Johron", Version)
     elseif subc == "create" or subc == "c" then

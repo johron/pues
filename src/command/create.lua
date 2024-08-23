@@ -10,7 +10,14 @@
 local json = require("lib.json")
 require("lib.util")
 
+---Create new project
+---@param arg table Argument table
 return function(arg)
+    if arg[2] and (arg[2] == "--help" or arg[2] == "-h") then
+        require("src.command.help").create()
+        os.exit(0)
+    end
+
     local config = get_config()
 
     local default = config["default"]

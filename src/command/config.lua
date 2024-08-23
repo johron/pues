@@ -64,9 +64,15 @@ local function write_points()
     end
 end
 
+---Generates global config
+---@param arg table Argument table
 return function(arg)
     local subc = arg[2]
-    if subc == nil then
+    if not subc then print("pues: specify configuration operation, see 'pues config --help'") os.exit(1) end
+
+    if subc == "--help" or subc == "-h" then
+        require("src.command.help").config()
+    elseif subc == "regen" then
         write_config({
             default = "blank",
             version = Version,
@@ -97,6 +103,8 @@ return function(arg)
             default = default,
             version = Version,
         })
+
+        -- TODO: add support for updating points aswell
     else
         printf("pues: '%s' is not a recognized subcommand of config")
         os.exit(1)

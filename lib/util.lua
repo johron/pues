@@ -8,7 +8,6 @@
  --]]
 
 local json = require("lib.json")
-local command = require("src.command")
 
 --- Get user input.
 ---@param msg string Message
@@ -69,7 +68,7 @@ end
 ---@return table luatable
 function _G.get_config()
 	local config = io.read_file(PuesPath .. "config.json")
-	if config == nil then print("pues: global configuration not found: please see 'pues --help config'") os.exit(1) end
+	if config == nil then print("pues: global configuration not found: please see 'pues config --help'") os.exit(1) end
 
 	return json.decode(config)
 end

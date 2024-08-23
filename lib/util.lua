@@ -113,3 +113,29 @@ function _G.highest(x, y)
 		return 2
 	end
 end
+
+---Check if version is outdated
+---@param version string
+---@param global boolean
+function _G.check_version(version, global)
+    local result = highest(Version, version)
+    if result == 1 then
+        local agreed
+        if global then
+            agreed = assure(string.format("Are you sure? Global config has an older version (%s) than current program version (%s). Using this config can have consequences.", version, Version))
+        else
+            agreed = assure(string.format("Are you sure? Point config has an older version (%s) than current program version (%s). Using this config can have consequences.", version, Version))
+        end
+        if not agreed then
+            print("pues: operation aborted")
+            os.exit(0)
+        end
+    elseif result == 2 then
+        if global then
+            printf("pues: global config version (%s) is higher than program version (%s)", version, Version)
+        else
+            printf("pues: point config version (%s) is higher than program version (%s)", version, Version)
+        end
+        os.exit(1)
+    end
+end

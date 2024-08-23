@@ -97,5 +97,8 @@ return function(arg)
             default = default,
             version = Version,
         })
+    else
+        printf("pues: '%s' is not a recognized subcommand of config")
+        os.exit(1)
     end
 end

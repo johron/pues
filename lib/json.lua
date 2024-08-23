@@ -18,7 +18,7 @@ local json = {}
 ---@param json_str string
 ---@return string formatted_json
 local function format(json_str)
-    local indent = "  "
+    local indent = "    "
     local formatted_json = ""
     local level = 0
 
@@ -35,6 +35,8 @@ local function format(json_str)
             formatted_json = formatted_json .. "\n" .. string.rep(indent, level) .. char
         elseif char == ',' then
             formatted_json = formatted_json .. char .. "\n" .. string.rep(indent, level)
+        elseif char == ":" then
+            formatted_json = formatted_json .. char .. " "
         else
             formatted_json = formatted_json .. char
         end

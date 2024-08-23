@@ -31,7 +31,7 @@ local function write_point(name, lua_table)
 end
 
 local points = {
-    ["generic"] = {
+    ["blank"] = {
         version = Version,
         premade = true,
     },

@@ -10,7 +10,7 @@
 local lfs = require("lfs")
 local json = require("lib.json")
 
-local configs = {
+local points = {
     ["generic"] = {
         default = "blank",
         version = Version,
@@ -32,6 +32,11 @@ local configs = {
             }
         }
     }
+}
+
+local global = {
+    default = "",
+    version = Version,
 }
 
 ---Writes a global config
@@ -56,13 +61,13 @@ end
 
 return function(arg)
     if #arg <= 1 then -- no extra argument: pues generate
-        local lua_table = configs["generic"]
+        local lua_table = points["generic"]
         write_config(lua_table)
     else
         local subc = arg[2]
-        if not configs[subc] then printf("pues: '%s' is not a predefined global configuration, see 'pues --help generate'", subc) os.exit(1) end
+        if not points[subc] then printf("pues: '%s' is not a predefined global configuration, see 'pues --help generate'", subc) os.exit(1) end
 
-        local lua_table = configs[subc]
+        local lua_table = points[subc]
         write_config(lua_table)
     end
 end

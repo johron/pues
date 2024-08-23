@@ -78,6 +78,8 @@ return function(arg)
     local build = point["build"]
     local interpreted = point["interpreted"]
     local run = point["run"]
+    -- most of theese are probably not necesarry for the project creating, most are for the run and build process, but
+    -- they can be usefull for the project.json that will be made for the project, maybe the point config from ~/.pues
+    -- should be copied to the project so it uses the correct things from project creation?
 
-    
 end

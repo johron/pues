@@ -12,10 +12,8 @@ local point = {
         "# %name",
         "- lorem ipsum dolor sit amet, consectetur adipiscing elit",
     } -- where it has the content of the readme here
-    built = -- true or false (is the language built, gives access to build and run parameters)
-    build = -- shell command, only availbale with `interpreted = true`
-    interpreted = -- true or false (is the language interpreted, gives access to run parameter)
-    run = -- shell command, only available with `interpreted = true` or `built = true`
+    build = -- shell command for building
+    run = -- shell command for running
 } -- if these (^^^) parameters are missing they will be treated as false or nil
 ```
 

@@ -40,7 +40,6 @@ local points = {
         premade = true,
         source = "python",
         readme = true,
-        interpreted = true,
         run = "python3 src/main.py",
     }
 }

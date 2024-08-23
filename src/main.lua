@@ -18,7 +18,7 @@ local function showhelp()
     print("usage: pues [-v | --version] [-h | --help]")
     print()
     print("commands")
-    print("  generate|g    Generate configuraiton from premade ones")
+    print("  config|conf   Generate configuraitons")
     print("  create|c      Create a new project")
     print("  run|r         Run project configured by config file")
 end
@@ -34,8 +34,8 @@ elseif #arg >= 1 then
         printf("Pues %s. Copyright (C) 2024 Johron", Version)
     elseif subc == "create" or subc == "c" then
         command.create(arg)
-    elseif subc == "generate" or subc == "g" then
-        command.generate(arg)
+    elseif subc == "config" or subc == "conf" then
+        command.config(arg)
     else
         printf("pues: '%s' is not a pues command. See 'pues --help'", arg[1])
     end

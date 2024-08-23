@@ -4,21 +4,16 @@
 
 ## Configuration documentation for prebuilt configs (configs are converted to json)
 ```lua
-local table = {
-    default = -- default point ran with `pues create` without any specifier
+local point = {
     version = -- latest version see `pues --version`. Pues will run older version configs, but will come with a confirmation that the user wants to run an older config
     premade = -- only for premade configs shipped by pues do not include this or the config will be replaced when pues updates
-    points = {
-        example = {
-            source = -- nil (empty), direct link to archive internet, archive name without extention (will find it from the .pues/points folder) **must be tar.gz** archive
-            readme = -- true or false (includes readme or not)
-            built = -- true or false (is the language built, gives access to build and run parameters)
-            build = -- shell command, only availbale with `interpreted = true`
-            interpreted = -- true or false (is the language interpreted, gives access to run parameter)
-            run = -- shell command, only available with `interpreted = true` or `built = true`
-        } -- if these (^^^) parameters are missing they will be treated as false or nil
-    }
-}
+    source = -- nil (empty), direct link to archive internet, archive name without extention (will find it from the .pues/points folder) **must be tar.gz** archive
+    readme = -- true or false (should pues autogenerate a readme?)
+    built = -- true or false (is the language built, gives access to build and run parameters)
+    build = -- shell command, only availbale with `interpreted = true`
+    interpreted = -- true or false (is the language interpreted, gives access to run parameter)
+    run = -- shell command, only available with `interpreted = true` or `built = true`
+} -- if these (^^^) parameters are missing they will be treated as false or nil
 ```
 
 - A point or start point is the project start point being used.

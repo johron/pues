@@ -17,8 +17,8 @@ end
 
 ---Generates global config
 ---@param arg table|nil Argument table
-function command.generate(arg)
-    require("src.command.generate")(arg)
+function command.config(arg)
+    require("src.command.config")(arg)
 end
 
 return command

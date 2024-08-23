@@ -69,7 +69,7 @@ end
 ---@return table luatable
 function _G.get_config()
 	local config = io.read_file(PuesPath .. "config.json")
-	if config == nil then print("pues: global configuration not found: please see 'pues --help generate' or make your own") os.exit(1) end
+	if config == nil then print("pues: global configuration not found: please see 'pues --help config' or make your own") os.exit(1) end
 
 	return json.decode(config)
 end

@@ -48,7 +48,7 @@ return function(arg)
 
     local points = config["points"]
     local point
-    if chosen == nil or string.len(chosen) == 0 then point = default else point = chosen end
+    if chosen == nil or string.len(chosen) == 0 then point = points[default] else point = points[chosen] end
     -- check if chosen is valid
 
     local source = point["source"]

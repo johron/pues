@@ -33,11 +33,9 @@ end
 local points = {
     ["blank"] = {
         version = Version,
-        premade = true,
     },
     ["python"] = {
         version = Version,
-        premade = true,
         source = "python",
         readme = true,
         run = "python3 src/main.py",
@@ -105,7 +103,7 @@ return function(arg)
 
         -- TODO: add support for updating points aswell
     else
-        printf("pues: '%s' is not a recognized subcommand of config")
+        printf("pues: '%s' is not a recognized subcommand of config", subc)
         os.exit(1)
     end
 end

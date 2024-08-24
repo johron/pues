@@ -8,6 +8,7 @@
  --]]
 
 local json = require("lib.json")
+local lfs = require("lfs")
 
 --- Get user input.
 ---@param msg string Message
@@ -62,6 +63,31 @@ function io.write_file(path, content)
 	if file == nil then print("pues: problem writing file") os.exit(1) end
 	file:write(content)
 	file:close()
+end
+
+---Check if directory has contents
+---@param path string
+---@return boolean empty
+function io.is_dir_empty(path)
+	for entry in lfs.dir(path) do
+        if entry ~= "." and entry ~= ".." then
+            return false
+        end
+    end
+    return true
+end
+
+---Get dir name
+---@param path string
+---@return string|nil
+function io.dir_name(path)
+    local lastSlash = path:match(".*()/.+")
+    
+    if not lastSlash then
+        return nil
+    end
+    
+    return path:sub(1, lastSlash - 1)
 end
 
 ---Read global configuration

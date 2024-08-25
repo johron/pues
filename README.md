@@ -6,7 +6,6 @@
 ```lua
 local point = {
     version = -- latest version see `pues --version`. Pues will run older version configs, but will come with a confirmation that the user wants to run an older config
-    premade = -- only for premade configs shipped by pues do not include this or the config will be replaced when pues updates
     source = -- nil (empty), direct link to archive internet, archive name without extention (will find it from the .pues/points folder) **must be tar.gz** archive
     readme = --[[ true or false (should pues autogenerate a readme?) maybe have it as an ]]{
         "# %name",

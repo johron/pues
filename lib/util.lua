@@ -81,13 +81,12 @@ end
 ---@param path string
 ---@return string|nil
 function io.dir_name(path)
-    local lastSlash = path:match(".*()/.+")
-    
-    if not lastSlash then
-        return nil
-    end
-    
-    return path:sub(1, lastSlash - 1)
+	local name = ""
+	for part in path:gmatch("([^/]+)") do
+		name = part
+	end
+
+	return name
 end
 
 ---Read global configuration

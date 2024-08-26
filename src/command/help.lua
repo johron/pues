@@ -36,7 +36,7 @@ end
 function help.short()
     print_usage()
     print("commands:")
-    print("  create <point>")
+    print("  create <name> [<point>]")
     print("  config (regen | default | premade | update)")
     print("  run")
     print()

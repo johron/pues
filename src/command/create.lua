@@ -16,73 +16,95 @@ require("lib.util")
 ---@param arg table Argument table
 return function(arg)
     local subc = arg[2]
-    if subc and (subc == "--help" or subc == "-h") then
+    local terc = arg[3]
+
+    if not subc then
+        print("pues: 'create' requires a secondary argument [name | point | --help|-h]")
+        os.exit(1)
+    end
+
+    if subc == "--help" or subc == "-h" then
         require("src.command.help").create()
         os.exit(0)
     end
 
+    local project_name = subc
+    local point_name = nil
+
     local config = get_config()
+    local global_version = config["version"]
 
-    local default = config["default"]
-    if (default == nil or string.len(default) == 0) and #arg < 2 then
-        print("pues: no point specified and default is unspecified in global config")
+    if not global_version or #global_version == 0 then
+        print("pues: no version passed in global configuration")
         os.exit(1)
     end
 
-    local version = config["version"]
+    check_version(global_version, true)
 
-    if version == nil then
-        print("pues: no version passed in global config")
+    if terc then
+        point_name = terc
+    else
+        local default_point = config["default"]
+        if not default_point or #default_point == 0 then
+            print("pues: default start point set in global configuration is not set")
+            os.exit(0)
+        end
+
+        point_name = default_point
+    end
+
+    print(project_name, point_name)
+
+    local point_path = PuesPath .. "points/" ..point_name .. ".json"
+
+    if not io.exists(point_path) then
+        print("pues: point supplied does not exist in ~/.pues/points/")
+    end
+
+    local point_json = io.read_file(point_path)
+    if not point_json then
+        print("pues: supplied point is empty")
         os.exit(1)
     end
 
-    if string.len(version) == 0 then
-        print("pues: no version passed in global config")
-        os.exit(1)
-    end
+    print(point_json)
 
-    check_version(version, true)
+    local point_table = json.decode(point_json)
+    local version = point_table["version"]
+    local source = point_table["source"]
+    local readme = point_table["readme"]
+    local build = point_table["build"]
+    local run = point_table["run"]
 
-    local point_name = subc
-    if not point_name or string.len(point_name) == 0 then point_name = default end
-
-    if not io.exists(PuesPath .. "points/" .. point_name .. ".json") then print("pues: specified or default point does not exist") os.exit(1) end
-    local point_json = io.read_file(PuesPath .. "points/" .. point_name .. ".json")
-    if point_json == nil then print("pues: error reading specified or default point") os.exit(1) end
-
-    local point = json.decode(point_json)
-
-    local version = point["version"]
     check_version(version, false)
 
-    print(json.encode(point))
-    local source = point["source"]
-    local readme = point["readme"]
-    local build = point["build"]
-    local run = point["run"]
-    -- most of theese are probably not necesarry for the project creating, most are for the run and build process, but
-    -- they can be usefull for the project.json that will be made for the project, maybe the point config from ~/.pues
-    -- should be copied to the project so it uses the correct things from project creation?
-
-    --[[local name = input("name: ")
-    if not name or #name == 0 then
-        print("pues: operation aborted")
-        os.exit(1)
-    end
-
-    if not io.is_dir_empty("./") and io.dir_name("./") then
-        lfs.mkdir(path)
-    end--]]
-    -- bruk heller input fra 'subc', eller 'terc' hvis 'subc' er for point
-
-    if source and #source ~= 0 then
-        print("yes source")
+    if io.dir_name(lfs.currentdir()) ~= project_name then
+        if not io.exists(project_name) then
+            lfs.mkdir(project_name)
+            lfs.chdir(project_name)
+        else
+            if not io.is_dir_empty(project_name) then
+                print("pues: folder already exists and is not empty")
+                os.exit(1)
+            end
+            lfs.chdir(project_name)
+        end
     else
-        print("no source")
+        if not io.is_dir_empty(lfs.currentdir()) then
+            print("pues: current folder is not empty")
+            os.exit(1)
+        end
     end
 
-    if readme and #source ~= 0 then
-        io.write_file(path .. "/README.md", string.format("# %s\n- Project generated with pues", name))
-        print(path)
+    local readme_str = string.format("# %s", project_name, point_name)
+    -- if run then add # Running \n ```bash pues run```
+    -- if build then --||--
+
+
+
+    if readme == true then
+        io.write_file("README.md", readme_str)
     end
+
+    print(lfs.currentdir())
 end

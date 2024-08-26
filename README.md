@@ -22,7 +22,7 @@ local point = {
 - Hvis programmet ikke er i den rette mappen (~/.pues) så skal programmet flytte seg selv til denne plassen i tilegg til å lage mappen hvis den ikke er der.
 - Kanskje det og skal genereres en blank konfigurasjon eller så skal brukeren gjøre det selv. (sist ser best ut)
 - Programmet skal kunne installere seg selv ^^ de øvre punktene
-- Fullfør write_config() og write_file() osv lag program!!
+- license adder, command som `pues license|licence mit 'author' 'year'`
 
 ## License
 - This source code is subject to the terms of the GNU General Public License, version 3. [License](./LICENSE.md)

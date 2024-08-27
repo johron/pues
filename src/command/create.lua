@@ -53,8 +53,6 @@ return function(arg)
         point_name = default_point
     end
 
-    print(project_name, point_name)
-
     local point_path = PuesPath .. "points/" ..point_name .. ".json"
 
     if not io.exists(point_path) then
@@ -66,8 +64,6 @@ return function(arg)
         print("pues: supplied point is empty")
         os.exit(1)
     end
-
-    print(point_json)
 
     local point_table = json.decode(point_json)
     local version = point_table["version"]
@@ -96,21 +92,29 @@ return function(arg)
         end
     end
 
-    local readme_str = string.format("# %s", project_name, point_name)
-    -- if run then add # Running \n ```bash pues run```
-    -- if build then --||--
+    local local_config = {
+        name = project_name,
+        version = Version,
+    }
 
     if build then
-        readme_str = readme_str .. "\n\n## Build\n- `pues build`"
+        local_config.build = build
     end
 
     if run then
-        readme_str = readme_str .. "\n\n## Run\n- `pues run`"
+        local_config.run = run
     end
 
+    io.write_file("config.json", json.encode(local_config))
+
     if readme == true then
+        local readme_str = string.format("# %s", project_name, point_name)
+
+        if build then readme_str = readme_str .. "\n\n## Build\n- `pues build`" end
+        if run then readme_str = readme_str .. "\n\n## Run\n- `pues run`" end
+
         io.write_file("README.md", readme_str)
     end
 
-    print(lfs.currentdir())
+    -- copy archive from place to dir and unarchive
 end

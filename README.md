@@ -11,8 +11,8 @@ local point = {
         "# %name",
         "- lorem ipsum dolor sit amet, consectetur adipiscing elit",
     } -- where it has the content of the readme here
-    build = -- shell command for building
-    run = -- shell command for running
+    build = {} -- shell command for building
+    run = {} -- shell command for running
 } -- if these (^^^) parameters are missing they will be treated as false or nil
 ```
 

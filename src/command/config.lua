@@ -38,7 +38,9 @@ local points = {
         version = Version,
         source = "python",
         readme = true,
-        run = "python3 src/main.py",
+        run = {
+            "python3 src/main.py"
+        },
     }
 }
 

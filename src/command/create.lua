@@ -100,7 +100,13 @@ return function(arg)
     -- if run then add # Running \n ```bash pues run```
     -- if build then --||--
 
+    if build then
+        readme_str = readme_str .. "\n\n## Build\n- `pues build`"
+    end
 
+    if run then
+        readme_str = readme_str .. "\n\n## Run\n- `pues run`"
+    end
 
     if readme == true then
         io.write_file("README.md", readme_str)

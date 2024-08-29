@@ -7,7 +7,7 @@
  - file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  --]]
 
-require("lib.util")
+require("src.util")
 
 Version = "0.0.1"
 PuesPath = string.format("%s/.pues/", os.getenv("HOME"))

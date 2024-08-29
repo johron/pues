@@ -10,7 +10,7 @@
 local json = require("lib.json")
 local lfs = require("lfs")
 
-require("lib.util")
+require("src.util")
 
 ---Create new project
 ---@param arg table Argument table
@@ -116,5 +116,5 @@ return function(arg)
         io.write_file("README.md", readme_str)
     end
 
-    -- copy archive from place to dir and unarchive
+    io.extract_zip(PuesPath .. "archives/" .. source .. ".zip", "")
 end

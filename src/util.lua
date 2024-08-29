@@ -9,6 +9,7 @@
 
 local json = require("lib.json")
 local lfs = require("lfs")
+local zip = require("zip")
 
 --- Get user input.
 ---@param msg string Message
@@ -162,4 +163,54 @@ function _G.check_version(version, global)
         end
         os.exit(1)
     end
+end
+
+local function create_directories(path)
+    local currentPath = ""
+    for dir in string.gmatch(path, "([^/]+)") do
+        currentPath = currentPath .. dir .. "/"
+        lfs.mkdir(currentPath)
+    end
+end
+
+function io.extract_zip(filepath, destination)
+    local zfile, err = zip.open(filepath)
+    if not zfile then
+        print("pues: failed to access zip file: " .. err)
+        return
+    end
+
+    for file in zfile:files() do
+        local outputFile = destination .. file.filename
+
+        if file.filename:sub(-1) == "/" then
+            create_directories(outputFile)
+        else
+            local dir = outputFile:match("(.*/)")
+            if dir then
+                create_directories(dir)
+            end
+
+            local currFile, err = zfile:open(file.filename)
+            if not currFile then
+                print("pues: failed to access file in zip: " .. err)
+                return
+            end
+
+            local currFileContents = currFile:read("*a")
+
+            local hBinaryOutput = io.open(outputFile, "wb")
+            if not hBinaryOutput then
+                print("pues: failed to access output file: " .. outputFile)
+                return
+            end
+
+            hBinaryOutput:write(currFileContents)
+            hBinaryOutput:close()
+
+            currFile:close()
+        end
+    end
+
+    zfile:close()
 end

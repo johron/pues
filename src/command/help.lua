@@ -31,12 +31,21 @@ function help.create()
     print("  <point> -> the point you want to generate")
 end
 
+function help.exec()
+    print_usage()
+    print("commands:")
+    print("  build -> build from config")
+    print("  run -> run from config")
+    print("  none -> runs or builds from default in config or determined")
+end
+
 ---Shows short help message
 function help.short()
     print_usage()
     print("commands:")
     print("  create <name> [<point>]")
     print("  config (regen | default | premade | update)")
+    print("  build")
     print("  run")
     print()
     print("more help for each command with:")

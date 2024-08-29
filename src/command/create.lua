@@ -39,7 +39,7 @@ return function(arg)
         os.exit(1)
     end
 
-    check_version(global_version, true)
+    check_version(global_version, 1)
 
     if terc then
         point_name = terc
@@ -74,7 +74,7 @@ return function(arg)
     local build = point_table["build"]
     local run = point_table["run"]
 
-    check_version(version, false)
+    check_version(version, 2)
 
     if io.dir_name(lfs.currentdir()) ~= project_name then
         if not io.exists(project_name) then
@@ -96,7 +96,7 @@ return function(arg)
 
     if managed == nil or managed == true then
         local local_config = {
-            name = project_name,
+            --name = project_name, -- TODO: remove this, wouldn't be necessary?
             version = Version,
         }
 

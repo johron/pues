@@ -1,0 +1,8 @@
+{
+    "build": [
+        "echd",
+        "hi"
+    ],
+    "version": "0.0.1",
+    "default": "build"
+}

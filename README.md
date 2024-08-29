@@ -23,6 +23,9 @@ local point = {
 - Programmet skal kunne installere seg selv ^^ de øvre punktene
 - license adder, command som `pues license mit 'author' 'year'`, this would mean I have to add all popular licenses 'n stuff, I do not really want to do this
 - where do the archives come from, the builtin ones. how can i have them without downloading them with the idea i have
+- init|manage command to turn non pues managed projects to managed projects
+- publish to luarocks package manager, since easy
+- bruke Docker for å holde styr på alle dependenciesene
 
 ## License
 - This source code is subject to the terms of the GNU General Public License, version 3. [License](./LICENSE.md)

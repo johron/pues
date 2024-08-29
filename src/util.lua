@@ -141,25 +141,29 @@ end
 
 ---Check if version is outdated
 ---@param version string
----@param global boolean
-function _G.check_version(version, global)
+---@param mode number
+function _G.check_version(version, mode)
     local result = highest(Version, version)
     if result == 1 then
         local agreed
-        if global then
+        if mode == 1 then
             agreed = assure(string.format("Are you sure? Global config has an older version (%s) than current program version (%s). Using this config can have consequences.", version, Version))
-        else
+        elseif mode == 2 then
             agreed = assure(string.format("Are you sure? Point config has an older version (%s) than current program version (%s). Using this config can have consequences.", version, Version))
+        else
+            agreed = assure(string.format("Are you sure? Local config has an older version (%s) than current program version (%s). Using this config can have consequences.", version, Version))
         end
         if not agreed then
             print("pues: operation aborted")
             os.exit(0)
         end
     elseif result == 2 then
-        if global then
+        if mode == 1 then
             printf("pues: global config version (%s) is higher than program version (%s)", version, Version)
-        else
+        elseif mode == 2 then
             printf("pues: point config version (%s) is higher than program version (%s)", version, Version)
+        else
+            printf("pues: local config version (%s) is higher than program version (%s)", version, Version)
         end
         os.exit(1)
     end

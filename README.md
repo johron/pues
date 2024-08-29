@@ -22,6 +22,7 @@ local point = {
 - Kanskje det og skal genereres en blank konfigurasjon eller så skal brukeren gjøre det selv. (sist ser best ut)
 - Programmet skal kunne installere seg selv ^^ de øvre punktene
 - license adder, command som `pues license mit 'author' 'year'`, this would mean I have to add all popular licenses 'n stuff, I do not really want to do this
+- where do the archives come from, the builtin ones. how can i have them without downloading them with the idea i have
 
 ## License
 - This source code is subject to the terms of the GNU General Public License, version 3. [License](./LICENSE.md)

@@ -13,7 +13,11 @@ Version = "0.0.1"
 PuesPath = string.format("%s/.pues/", os.getenv("HOME"))
 
 if #arg == 0 then
-    require("src.command.help").short() -- this should execute the 'run' command if it is in a pues project
+    if io.exists("config.json") then
+        require("src.command.exec")()
+    else
+        require("src.command.help").short()
+    end
 elseif #arg >= 1 then
     local subc = arg[1]
     if subc == "--help" or subc == "-h" then
@@ -24,6 +28,10 @@ elseif #arg >= 1 then
         require("src.command.create")(arg)
     elseif subc == "config" or subc == "conf" then
         require("src.command.config")(arg)
+    elseif subc == "run" or subc == "r" then
+        require("src.command.exec")("run")
+    elseif subc == "build" or subc == "b" then
+        require("src.command.exec")("build")
     else
         printf("pues: '%s' is not a pues command. See 'pues --help'", arg[1])
     end

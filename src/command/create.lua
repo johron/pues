@@ -69,6 +69,7 @@ return function(arg)
     local version = point_table["version"]
     local source = point_table["source"]
     local readme = point_table["readme"]
+    local managed = point_table["managed"]
     local build = point_table["build"]
     local run = point_table["run"]
 
@@ -92,20 +93,22 @@ return function(arg)
         end
     end
 
-    local local_config = {
-        name = project_name,
-        version = Version,
-    }
+    if managed == nil or managed == true then
+        local local_config = {
+            name = project_name,
+            version = Version,
+        }
 
-    if build then
-        local_config.build = build
+        if build then
+            local_config.build = build
+        end
+
+        if run then
+            local_config.run = run
+        end
+
+        io.write_file("config.json", json.encode(local_config))
     end
-
-    if run then
-        local_config.run = run
-    end
-
-    io.write_file("config.json", json.encode(local_config))
 
     if readme == true then
         local readme_str = string.format("# %s", project_name, point_name)

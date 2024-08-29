@@ -165,6 +165,8 @@ function _G.check_version(version, global)
     end
 end
 
+---Create all directories in path
+---@param path string
 local function create_directories(path)
     local currentPath = ""
     for dir in string.gmatch(path, "([^/]+)") do
@@ -173,6 +175,9 @@ local function create_directories(path)
     end
 end
 
+---Extract contents of a zip archive
+---@param filepath string
+---@param destination string
 function io.extract_zip(filepath, destination)
     local zfile, err = zip.open(filepath)
     if not zfile then

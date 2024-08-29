@@ -31,7 +31,6 @@ function help.create()
     print("  <point> -> the point you want to generate")
 end
 
-
 ---Shows short help message
 function help.short()
     print_usage()

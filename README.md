@@ -7,10 +7,7 @@
 local point = {
     version = -- latest version see `pues --version`. Pues will run older version configs, but will come with a confirmation that the user wants to run an older config
     source = -- nil (empty), direct link to archive internet, archive name without extention (will find it from the .pues/points folder) **must be tar.gz** archive
-    readme = --[[ true or false (should pues autogenerate a readme?) maybe have it as an ]]{
-        "# %name",
-        "- lorem ipsum dolor sit amet, consectetur adipiscing elit",
-    } -- where it has the content of the readme here
+    readme = -- true or false
     managed = -- if does not exist then it is true, true|false|nothing
     build = {} -- shell command for building
     run = {} -- shell command for running

@@ -70,6 +70,7 @@ return function(arg)
     local source = point_table["source"]
     local readme = point_table["readme"]
     local managed = point_table["managed"]
+    local default = point_table["default"]
     local build = point_table["build"]
     local run = point_table["run"]
 
@@ -99,12 +100,25 @@ return function(arg)
             version = Version,
         }
 
+        if default and (default == "run" or default == "build") then
+            local_config.default = default
+        end
+        
         if build then
             local_config.build = build
+            if not default then
+                local_config.default = "build"
+            end
         end
 
         if run then
             local_config.run = run
+            
+            if not default then
+                if not build then
+                    local_config.default = "run"
+                end
+            end
         end
 
         io.write_file("config.json", json.encode(local_config))

@@ -9,6 +9,7 @@ local point = {
     source = -- nil (empty), direct link to archive internet, archive name without extention (will find it from the .pues/points folder) **must be tar.gz** archive
     readme = -- true or false
     managed = -- if does not exist then it is true, true|false|nothing
+    default = -- "run" or "build" -- if run and build in config then build will be default if none is set or build if only build and so on
     build = {} -- shell command for building
     run = {} -- shell command for running
 } -- if these (^^^) parameters are missing they will be treated as false or nil

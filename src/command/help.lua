@@ -21,7 +21,8 @@ function help.config()
     print("  regen -> rewrites all configurations")
     print("  default <point> -> update global config to have new default point")
     print("  premade -> rewrites all the premade points")
-    print("  update -> updates all configurations with new version numbers and")
+    print("  update -> updates all configurations, including project configuration")
+    print("            if working directory contains one, with new version numbers and")
     print("            fields that new versions may have (may break older configs)")
 end
 

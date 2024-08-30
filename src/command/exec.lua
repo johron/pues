@@ -51,8 +51,8 @@ local function loop_over_and_exec(conf, isrun, arg)
 end
 
 ---Execute either build or run
----@param mode string|nil build|run|nil
 ---@param arg table
+---@param mode string|nil build|run|nil
 return function(arg, mode)
     local subc = arg[2]
     if subc == "--help" or subc == "-h" then

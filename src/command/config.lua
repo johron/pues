@@ -63,6 +63,15 @@ local function write_points()
     end
 end
 
+local function has_name_of_point(name)
+    for key, _ in pairs(points) do
+      if key == name then
+        return true
+      end
+    end
+    return false
+  end
+
 ---Generates global config
 ---@param arg table Argument table
 return function(arg)
@@ -108,7 +117,30 @@ return function(arg)
             version = Version,
         })
 
-        
+        write_points()
+
+        for v in lfs.dir(PuesPath .. "points/") do
+            local v = v:gsub(".json$", "")
+            if not (v == "." or v == "..") then
+                if not has_name_of_point(v) then
+                    local old_point_str = io.read_file(PuesPath .. "points/" .. v .. ".json")
+                    if old_point_str == nil then print("pues: error reading current point") os.exit(1) end
+                    local old_point = json.decode(old_point_str)
+
+                    local point = {
+                        version = Version,
+                        source = old_point["source"],
+                        readme = old_point["readme"],
+                        managed = old_point["managed"],
+                        default = old_point["default"],
+                        build = old_point["build"],
+                        run = old_point["run"],
+                    }
+                    
+                    write_point(v, point)
+                end
+            end
+        end
     else
         printf("pues: '%s' is not a recognized subcommand of config", subc)
         os.exit(1)

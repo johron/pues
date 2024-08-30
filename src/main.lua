@@ -13,9 +13,7 @@ Version = "0.0.1"
 PuesPath = string.format("%s/.pues/", os.getenv("HOME"))
 
 if #arg == 0 then
-    if io.exists("config.json") then
-        require("src.command.help").short()
-    end
+    require("src.command.help").short()
 elseif #arg >= 1 then
     local subc = arg[1]
     if subc == "--help" or subc == "-h" then

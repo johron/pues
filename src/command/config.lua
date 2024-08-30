@@ -98,12 +98,17 @@ return function(arg)
         local default = get_config()["default"]
         if not default then default = nil end
 
+        local agreed = assure("Are you sure? This will rewrite all your configurations, which could break them.")
+        if not agreed then
+            print("pues: operation aborted")
+        end
+
         write_config({
             default = default,
             version = Version,
         })
 
-        -- TODO: add support for updating points aswell
+        
     else
         printf("pues: '%s' is not a recognized subcommand of config", subc)
         os.exit(1)

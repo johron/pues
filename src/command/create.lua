@@ -132,5 +132,7 @@ return function(arg)
         io.write_file("README.md", readme_str)
     end
 
-    io.extract_zip(PuesPath .. "archives/" .. source .. ".zip", "")
+    if source or (source and #source ~= 0) or source ~= nil then
+        io.extract_zip(PuesPath .. "archives/" .. source .. ".zip", "")
+    end
 end

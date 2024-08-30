@@ -151,7 +151,7 @@ function _G.check_version(version, mode)
         elseif mode == 2 then
             agreed = assure(string.format("Are you sure? Point config has an older version (%s) than current program version (%s). Using this config can have consequences.", version, Version))
         else
-            agreed = assure(string.format("Are you sure? Local config has an older version (%s) than current program version (%s). Using this config can have consequences.", version, Version))
+            agreed = assure(string.format("Are you sure? Project config has an older version (%s) than current program version (%s). Using this config can have consequences.", version, Version))
         end
         if not agreed then
             print("pues: operation aborted")
@@ -163,7 +163,7 @@ function _G.check_version(version, mode)
         elseif mode == 2 then
             printf("pues: point config version (%s) is higher than program version (%s)", version, Version)
         else
-            printf("pues: local config version (%s) is higher than program version (%s)", version, Version)
+            printf("pues: project config version (%s) is higher than program version (%s)", version, Version)
         end
         os.exit(1)
     end

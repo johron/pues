@@ -60,9 +60,9 @@ return function(arg, mode)
         os.exit(0)
     end
 
-    local config_file = io.read_file("config.json")
+    local config_file = io.read_file("pues.json")
     if not config_file then
-        print("pues: config.json does not exist")
+        print("pues: pues.json does not exist")
         os.exit(1)
     end
 
@@ -100,7 +100,7 @@ return function(arg, mode)
 
         loop_over_and_exec(conf, true, arg)
     else
-        print("pues: missing 'default' property in config.json")
+        print("pues: missing 'default' property in pues.json")
         os.exit(1)
     end
 end

@@ -120,7 +120,7 @@ return function(arg)
             end
         end
 
-        io.write_file("config.json", json.encode(local_config))
+        io.write_file("pues.json", json.encode(local_config))
     end
 
     if readme == true then

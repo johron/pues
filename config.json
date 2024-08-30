@@ -1,8 +1,7 @@
 {
-    "build": [
-        "echd",
-        "hi"
-    ],
     "version": "0.0.1",
-    "default": "build"
+    "default": "run",
+    "run": [
+        "/usr/bin/lua src/main.lua"
+    ]
 }

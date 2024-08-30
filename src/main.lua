@@ -14,8 +14,6 @@ PuesPath = string.format("%s/.pues/", os.getenv("HOME"))
 
 if #arg == 0 then
     if io.exists("config.json") then
-        require("src.command.exec")()
-    else
         require("src.command.help").short()
     end
 elseif #arg >= 1 then
@@ -29,9 +27,9 @@ elseif #arg >= 1 then
     elseif subc == "config" or subc == "conf" then
         require("src.command.config")(arg)
     elseif subc == "run" or subc == "r" then
-        require("src.command.exec")("run")
+        require("src.command.exec")(arg, "run")
     elseif subc == "build" or subc == "b" then
-        require("src.command.exec")("build")
+        require("src.command.exec")(arg, "build")
     else
         printf("pues: '%s' is not a pues command. See 'pues --help'", arg[1])
     end

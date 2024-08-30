@@ -96,7 +96,6 @@ return function(arg)
 
     if managed == nil or managed == true then
         local local_config = {
-            --name = project_name, -- TODO: remove this, wouldn't be necessary?
             version = Version,
         }
 

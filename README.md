@@ -12,6 +12,7 @@ local point = {
     default = -- "run" or "build" -- if run and build in config then build will be default if none is set or build if only build and so on
     build = {} -- shell command for building
     run = {} -- shell command for running, additional arguments in command are supplied to first entry in `run`
+    marked = {} -- files marked for replacing %{name} to the project name or other variables
 } -- if these (^^^) parameters are missing they will be treated as false or nil
 ```
 

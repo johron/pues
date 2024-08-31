@@ -56,7 +56,8 @@ return function(arg)
     local point_path = PuesPath .. "points/" ..point_name .. ".json"
 
     if not io.exists(point_path) then
-        print("pues: point supplied does not exist in ~/.pues/points/")
+        printf("pues: supplied point '%s' does not exist in ~/.pues/points/", point_name)
+        os.exit(1)
     end
 
     local point_json = io.read_file(point_path)
@@ -73,6 +74,7 @@ return function(arg)
     local default = point_table["default"]
     local build = point_table["build"]
     local run = point_table["run"]
+    local marked = point_table["marked"]
 
     check_version(version, 2)
 
@@ -96,6 +98,7 @@ return function(arg)
 
     if managed == nil or managed == true then
         local local_config = {
+            name = project_name,
             version = Version,
         }
 
@@ -134,5 +137,19 @@ return function(arg)
 
     if source or (source and #source ~= 0) or source ~= nil then
         io.extract_zip(PuesPath .. "archives/" .. source .. ".zip", "")
+
+        if not marked or (marked and #marked == 0) or marked ~= nil then
+            for i, v in ipairs(marked) do
+                if not io.exists(v) then
+                    printf("pues: path marked for replacing does not exist: '%s'", v)
+                    os.exit(1)
+                end
+
+                local content = io.read_file(v)
+                if content == nil then content = "" end
+                content = content:gsub("%%{name}", project_name)
+                io.write_file(v, content)
+            end
+        end
     end
 end

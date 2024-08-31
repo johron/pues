@@ -7,11 +7,13 @@
  - file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  --]]
 
+require("src.util")
+
 local licenses = {
     ["mit"] = [[
 MIT License
 
-Copyright (c) <year> <author>
+Copyright (c) %{year} %{author}
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -712,6 +714,52 @@ Public License instead of this License.  But first, please read
 ---License a project
 ---@param arg table
 return function(arg)
-    -- pues license <license> [<author>] [<year>]
-    print("TODO: implement license command")
+    local subc = arg[2]
+    if not subc then 
+        print("pues: missing arguments, see 'pues license --help'")
+        os.exit(1)
+    end
+
+    if subc == "--help" or subc == "-h" then
+        require("src.command.help").license()
+    else
+        local license = licenses[subc]
+        if not license then
+            printf("pues: '%s' is not a supporetd license, see 'pues license --help'", subc)
+            os.exit(1)
+        end
+
+        if string.find(license, "%{year}") and string.find(license, "%{author}") then
+            local year = arg[3]
+            local author = arg[4]
+
+            if not year or not author then
+                print("pues: missing year and author argument needed for selected license, see 'pues license --help'")
+                os.exit(1)
+            end
+
+            license = license:gsub("%{year}", year)
+            license = license:gsub("%{author}", author)
+        elseif string.find(license, "%{year}") then
+            local year = arg[3]
+
+            if not year then
+                print("pues: missing year argument needed for selected license, see 'pues license --help'")
+                os.exit(1)
+            end
+
+            license = license:gsub("%{year}", year)
+        elseif string.find(license, "%{author}") then
+            local author = arg[3]
+
+            if not author then
+                print("pues: missing author argument needed for selected license, see 'pues license --help'")
+                os.exit(1)
+            end
+
+            license = license:gsub("%{author}", author)
+        end
+
+        io.write_file("LICENSE.md", license)
+    end
 end

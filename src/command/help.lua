@@ -32,12 +32,21 @@ function help.create()
     print("  <point> -> the point you want to generate")
 end
 
----Shows short help message
+function help.license()
+    print_usage()
+    print("argument(s):")
+    print("  <license> [<year>] [<author>] -> license a project")
+    print("licenses:")
+    print("  mit <year> <author> -> MIT License")
+    print("  gpl-3.0 -> GNU General Public License version 3")
+end
+
 function help.short()
     print_usage()
     print("commands:")
     print("  create <name> [<point>]")
     print("  config <regen | default | premade | update>")
+    print("  license <license> [<year>] [<author>]")
     print("  build")
     print("  run")
     print()

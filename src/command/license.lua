@@ -715,7 +715,7 @@ Public License instead of this License.  But first, please read
 ---@param arg table
 return function(arg)
     local subc = arg[2]
-    if not subc then 
+    if not subc then
         print("pues: missing arguments, see 'pues license --help'")
         os.exit(1)
     end

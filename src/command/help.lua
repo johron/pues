@@ -41,6 +41,12 @@ function help.license()
     print("  gpl-3.0 -> GNU General Public License version 3")
 end
 
+function help.manage()
+    print_usage()
+    print("argument(s):")
+    print("  <point> -> the point you want to use")
+end
+
 function help.short()
     print_usage()
     print("commands:")

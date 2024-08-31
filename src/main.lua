@@ -30,6 +30,8 @@ elseif #arg >= 1 then
         require("src.command.exec")(arg, "build")
     elseif subc == "license" or subc == "l" then
         require("src.command.license")(arg)
+    elseif subc == "manage" or subc == "m" then
+        require("src.command.manage")(arg)
     else
         printf("pues: '%s' is not a pues command. See 'pues --help'", arg[1])
     end

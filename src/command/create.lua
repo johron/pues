@@ -138,7 +138,7 @@ return function(arg)
     if source or (source and #source ~= 0) or source ~= nil then
         io.extract_zip(PuesPath .. "archives/" .. source .. ".zip", "")
 
-        if not marked or (marked and #marked == 0) or marked ~= nil then
+        if marked or (marked and #marked ~= 0) or marked ~= nil then
             for i, v in ipairs(marked) do
                 if not io.exists(v) then
                     printf("pues: path marked for replacing does not exist: '%s'", v)

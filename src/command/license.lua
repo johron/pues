@@ -738,8 +738,8 @@ return function(arg)
                 os.exit(1)
             end
 
-            license = license:gsub("%{year}", year)
-            license = license:gsub("%{author}", author)
+            license = license:gsub("%%{year}", year)
+            license = license:gsub("%%{author}", author)
         elseif string.find(license, "%{year}") then
             local year = arg[3]
 
@@ -748,7 +748,7 @@ return function(arg)
                 os.exit(1)
             end
 
-            license = license:gsub("%{year}", year)
+            license = license:gsub("%%{year}", year)
         elseif string.find(license, "%{author}") then
             local author = arg[3]
 
@@ -757,7 +757,7 @@ return function(arg)
                 os.exit(1)
             end
 
-            license = license:gsub("%{author}", author)
+            license = license:gsub("%%{author}", author)
         end
 
         io.write_file("LICENSE.md", license)

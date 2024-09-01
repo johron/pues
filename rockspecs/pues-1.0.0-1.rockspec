@@ -1,8 +1,8 @@
 package = "pues"
-version = "1.0.0-1"
+version = "1.0-1"
 source = {
    url = "git+https://github.com/johron/pues",
-   tag = "1.0.0"
+   tag = "1.0"
 }
 description = {
    summary = "Project initializer and runner",

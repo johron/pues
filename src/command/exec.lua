@@ -37,7 +37,7 @@ local function loop_over_and_exec(conf, isrun, arg)
             printf("pues: error executing '%s'", v)
             os.exit(1)
         end
-        
+
         local result = handle:read("*a")
         handle:close()
 

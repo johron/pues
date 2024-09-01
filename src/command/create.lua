@@ -105,7 +105,7 @@ return function(arg)
         if default and (default == "run" or default == "build") then
             local_config.default = default
         end
-        
+
         if build then
             local_config.build = build
             if not default then
@@ -115,7 +115,7 @@ return function(arg)
 
         if run then
             local_config.run = run
-            
+
             if not default then
                 if not build then
                     local_config.default = "run"

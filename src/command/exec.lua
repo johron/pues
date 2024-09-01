@@ -67,10 +67,9 @@ return function(arg, mode)
     end
 
     local config = json.decode(config_file)
-    local default = config["default"]
     local version = config["version"]
 
-    check_version(version, 3)
+    check_version(version, true)
 
     local conf
 
@@ -78,11 +77,6 @@ return function(arg, mode)
         conf = config["build"]
     elseif mode == "run" then
         conf = config["run"]
-    else
-        if default == "run" or default == "build" then
-            mode = default
-            conf = config[default]
-        end
     end
 
     if mode == "build" then
@@ -100,7 +94,7 @@ return function(arg, mode)
 
         loop_over_and_exec(conf, true, arg)
     else
-        print("pues: missing 'default' property in pues.json")
+        print("pues: mode is wrong?")
         os.exit(1)
     end
 end

@@ -31,26 +31,8 @@ return function(arg)
     local project_name = subc
     local point_name = nil
 
-    local config = get_config()
-    local global_version = config["version"]
-
-    if not global_version or #global_version == 0 then
-        print("pues: no version passed in global configuration")
-        os.exit(1)
-    end
-
-    check_version(global_version, 1)
-
     if terc then
         point_name = terc
-    else
-        local default_point = config["default"]
-        if not default_point or #default_point == 0 then
-            print("pues: default start point set in global configuration is not set")
-            os.exit(0)
-        end
-
-        point_name = default_point
     end
 
     local point_path = PuesPath .. "points/" ..point_name .. ".json"
@@ -71,12 +53,11 @@ return function(arg)
     local source = point_table["source"]
     local readme = point_table["readme"]
     local managed = point_table["managed"]
-    local default = point_table["default"]
     local build = point_table["build"]
     local run = point_table["run"]
     local marked = point_table["marked"]
 
-    check_version(version, 2)
+    check_version(version, false)
 
     if io.dir_name(lfs.currentdir()) ~= project_name then
         if not io.exists(project_name) then
@@ -102,25 +83,12 @@ return function(arg)
             version = Version,
         }
 
-        if default and (default == "run" or default == "build") then
-            local_config.default = default
-        end
-
         if build then
             local_config.build = build
-            if not default then
-                local_config.default = "build"
-            end
         end
 
         if run then
             local_config.run = run
-
-            if not default then
-                if not build then
-                    local_config.default = "run"
-                end
-            end
         end
 
         io.write_file("pues.json", json.encode(local_config))

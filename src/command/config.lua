@@ -10,18 +10,6 @@
 local lfs = require("lfs")
 local json = require("lib.json")
 
----Writes a global config
----@param lua_table table
-local function write_config(lua_table)
-    local json_string = json.encode(lua_table)
-
-    if not io.exists(PuesPath) then
-        lfs.mkdir(PuesPath)
-    end
-
-    io.write_file(PuesPath .. "config.json", json_string)
-end
-
 ---Write a point
 ---@param name string
 ---@param lua_table table
@@ -72,7 +60,7 @@ local function has_name_of_point(name)
     return false
   end
 
----Generates global config
+---Generates configs
 ---@param arg table Argument table
 return function(arg)
     local subc = arg[2]
@@ -80,21 +68,6 @@ return function(arg)
 
     if subc == "--help" or subc == "-h" then
         require("src.command.help").config()
-    elseif subc == "regen" then
-        write_config({
-            default = "blank",
-            version = Version,
-        })
-
-        write_points()
-    elseif subc == "default" then
-        local terc = arg[3]
-        if not terc then print("pues: specify what the default should be") os.exit(1) end
-
-        write_config({
-            default = terc,
-            version = Version,
-        })
     elseif subc == "premade" then
         local agreed = assure("Are you sure? This will override your current premade points.")
         if not agreed then
@@ -104,18 +77,10 @@ return function(arg)
 
         write_points()
     elseif subc == "update" then
-        local default = get_config()["default"]
-        if not default then default = nil end
-
         local agreed = assure("Are you sure? This will rewrite all your configurations, which could break them.")
         if not agreed then
             print("pues: operation aborted")
         end
-
-        write_config({
-            default = default,
-            version = Version,
-        })
 
         write_points()
 
@@ -132,7 +97,6 @@ return function(arg)
                         source = old_point["source"],
                         readme = old_point["readme"],
                         managed = old_point["managed"],
-                        default = old_point["default"],
                         build = old_point["build"],
                         run = old_point["run"],
                     }

@@ -90,15 +90,6 @@ function io.dir_name(path)
 	return name
 end
 
----Read global configuration
----@return table luatable
-function _G.get_config()
-	local config = io.read_file(PuesPath .. "config.json")
-	if config == nil then print("pues: global configuration not found: please see 'pues config --help'") os.exit(1) end
-
-	return json.decode(config)
-end
-
 ---Read point configuration
 ---@param point string
 ---@return table luatable
@@ -141,14 +132,12 @@ end
 
 ---Check if version is outdated
 ---@param version string
----@param mode number
-function _G.check_version(version, mode)
+---@param project boolean
+function _G.check_version(version, project)
     local result = highest(Version, version)
     if result == 1 then
         local agreed
-        if mode == 1 then
-            agreed = assure(string.format("Are you sure? Global config has an older version (%s) than current program version (%s). Using this config can have consequences.", version, Version))
-        elseif mode == 2 then
+        if project == false then
             agreed = assure(string.format("Are you sure? Point config has an older version (%s) than current program version (%s). Using this config can have consequences.", version, Version))
         else
             agreed = assure(string.format("Are you sure? Project config has an older version (%s) than current program version (%s). Using this config can have consequences.", version, Version))
@@ -158,9 +147,7 @@ function _G.check_version(version, mode)
             os.exit(0)
         end
     elseif result == 2 then
-        if mode == 1 then
-            printf("pues: global config version (%s) is higher than program version (%s)", version, Version)
-        elseif mode == 2 then
+        if project == false then
             printf("pues: point config version (%s) is higher than program version (%s)", version, Version)
         else
             printf("pues: project config version (%s) is higher than program version (%s)", version, Version)

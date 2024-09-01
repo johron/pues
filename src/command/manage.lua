@@ -24,6 +24,11 @@ return function(arg)
         os.exit(0)
     end
 
+    if io.exists("pues.json") then
+        print("pues: current folder is already managed by pues")
+        os.exit(1)
+    end
+
     local name = io.dir_name(lfs.currentdir())
 
     local terc = arg[3]
@@ -31,20 +36,10 @@ return function(arg)
         name = terc
     end
 
-    local config = get_config()
-
     local point_name
 
     if subc then
         point_name = subc
-    else
-        local default_point = config["default"]
-        if not default_point or #default_point == 0 then
-            print("pues: default start point set in global configuration is not set")
-            os.exit(0)
-        end
-
-        point_name = default_point
     end
 
     local point_path = PuesPath .. "points/" ..point_name .. ".json"
@@ -62,36 +57,22 @@ return function(arg)
 
     local point_table = json.decode(point_json)
     local version = point_table["version"]
-    local default = point_table["default"]
     local build = point_table["build"]
     local run = point_table["run"]
 
-    check_version(version, 2)
+    check_version(version, false)
 
     local local_config = {
         name = name,
         version = Version,
     }
 
-    if default and (default == "run" or default == "build") then
-        local_config.default = default
-    end
-
     if build then
         local_config.build = build
-        if not default then
-            local_config.default = "build"
-        end
     end
 
     if run then
         local_config.run = run
-
-        if not default then
-            if not build then
-                local_config.default = "run"
-            end
-        end
     end
 
     io.write_file("pues.json", json.encode(local_config))

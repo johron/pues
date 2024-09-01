@@ -1,6 +1,11 @@
 # Pues
 - Project initializer and runner
 
+## Install
+```bash
+luarocks install pues
+```
+
 ## Point documentation
 - `version`: The version this point was made for
 - `source`?: Name of zip archive located in '~/.pues/archives/' without extention

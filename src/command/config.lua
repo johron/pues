@@ -109,9 +109,13 @@ return function(arg)
         move_archives()
         write_points()
     elseif subc == "all" then
-        local agreed = assure("Are you sure? This will rewrite all your configurations, which could break them.")
-        if not agreed then
-            print("pues: operation aborted")
+        if arg[1] == "install" then
+            print("Setting up for first run..")
+        else
+            local agreed = assure("Are you sure? This will rewrite all your configurations, which could break them.")
+            if not agreed then
+                print("pues: operation aborted")
+            end
         end
 
         write_points()

@@ -167,8 +167,8 @@ end
 ---@param y string
 ---@return number result x = 1, y = 2, same = 3
 function _G.highest(x, y)
-	local nx = x:gsub("%.", "")
-	local ny = y:gsub("%.", "")
+	local nx = x:gsub("%.", ""):gsub("%-", "")
+	local ny = y:gsub("%.", ""):gsub("%-", "")
 
 	if nx == ny then
 		return 3

@@ -9,7 +9,7 @@
 
 require("src.util")
 
-Version = "1.0.0"
+Version = "1.0-1"
 PuesPath = string.format("%s/.pues/", os.getenv("HOME"))
 
 if not io.exists(PuesPath) then

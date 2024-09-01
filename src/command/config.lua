@@ -8,7 +8,9 @@
  --]]
 
 local lfs = require("lfs")
-local json = require("src.util.util")
+local json = require("src.util.json")
+
+require("src.util.misc")
 
 ---Write a point
 ---@param name string

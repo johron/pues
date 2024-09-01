@@ -7,8 +7,10 @@
  - file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  --]]
 
-local json = require("src.util.util")
+local json = require("src.util.json")
 local lfs = require("lfs")
+
+require("src.util.misc")
 
 ---Convert a project to a pues managed project
 ---@param arg table

@@ -7,7 +7,7 @@
  - file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  --]]
 
-require("src.util.util")
+require("src.util.io")
 
 local licenses = {
     ["mit"] = [[

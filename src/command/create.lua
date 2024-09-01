@@ -7,10 +7,11 @@
  - file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  --]]
 
-local json = require("src.util.util")
+local json = require("src.util.json")
 local lfs = require("lfs")
 
-require("src.util.util")
+require("src.util.io")
+require("src.util.misc")
 
 ---Create new project
 ---@param arg table Argument table

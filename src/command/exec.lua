@@ -7,9 +7,10 @@
  - file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  --]]
 
-local json = require("src.util.util")
+local json = require("src.util.json")
 
-require("src.util.util")
+require("src.util.io")
+require("src.util.misc")
 
 local function loop_over_and_exec(conf, isrun, arg)
     local isrun = isrun or false

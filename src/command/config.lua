@@ -29,6 +29,33 @@ local points = {
         run = {
             "python3 src/main.py"
         },
+    },
+    ["nodejs"] = {
+        version = Version,
+        source = "nodejs",
+        readme = true,
+        run = {
+            "node src/main.js"
+        },
+    },
+    ["lua"] = {
+        version = Version,
+        source = "lua",
+        readme = true,
+        run = {
+            "lua src/main.lua"
+        },
+    },
+    ["gcc"] = {
+        version = Version,
+        source = "gcc",
+        readme = true,
+        build = {
+            "gcc src/main.c -o out/main"
+        },
+        run = {
+            "./out/main"
+        }
     }
 }
 

@@ -19,7 +19,7 @@ return function(arg)
     local terc = arg[3]
 
     if not subc then
-        print("pues: 'create' requires a secondary argument [name | point | --help|-h]")
+        print("pues: 'create' requires a secondary argument for name | --help|-h]")
         os.exit(1)
     end
 
@@ -29,11 +29,13 @@ return function(arg)
     end
 
     local project_name = subc
-    local point_name = nil
 
-    if terc then
-        point_name = terc
+    if not terc then
+        print("pues: requires tertiary argument for point, see 'pues create --help'")
+        os.exit(1)
     end
+
+    local point_name = terc
 
     local point_path = PuesPath .. "points/" ..point_name .. ".json"
 

@@ -28,7 +28,7 @@ end
 function help.create()
     print_usage()
     print("argument(s):")
-    print("  <point> -> the point you want to generate")
+    print("  <name> <point> -> the name of the proejct and the point you want to generate")
 end
 
 function help.license()
@@ -49,7 +49,7 @@ end
 function help.short()
     print_usage()
     print("commands:")
-    print("  create <name> [<point>]")
+    print("  create <name> <point>")
     print("  config <premade | all | path>")
     print("  license <license> [<year>] [<author>]")
     print("  build")

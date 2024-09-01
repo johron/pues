@@ -88,7 +88,7 @@ local function has_name_of_point(name)
 end
 
 local function move_archives()
-    os.rename("archives", PuesPath .. "/archives")
+    os.execute("cp -r" .. " archives/ " .. PuesPath)
 end
 
 ---Generates configs

@@ -76,7 +76,7 @@ return function(arg)
         end
 
         write_points()
-    elseif subc == "update" then
+    elseif subc == "all" then
         local agreed = assure("Are you sure? This will rewrite all your configurations, which could break them.")
         if not agreed then
             print("pues: operation aborted")

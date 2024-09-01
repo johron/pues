@@ -7,7 +7,7 @@
  - file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  --]]
 
-local json = require("lib.json")
+local json = require("src.util")
 local lfs = require("lfs")
 
 require("src.util")

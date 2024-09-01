@@ -8,7 +8,7 @@
  --]]
 
 local lfs = require("lfs")
-local json = require("lib.json")
+local json = require("src.util")
 
 ---Write a point
 ---@param name string
@@ -85,7 +85,11 @@ local function has_name_of_point(name)
       end
     end
     return false
-  end
+end
+
+local function move_archives()
+    os.rename("archives", PuesPath .. "/archives")
+end
 
 ---Generates configs
 ---@param arg table Argument table
@@ -102,6 +106,7 @@ return function(arg)
             os.exit(0)
         end
 
+        move_archives()
         write_points()
     elseif subc == "all" then
         local agreed = assure("Are you sure? This will rewrite all your configurations, which could break them.")
@@ -110,6 +115,7 @@ return function(arg)
         end
 
         write_points()
+        move_archives()
 
         for v in lfs.dir(PuesPath .. "points/") do
             local v = v:gsub(".json$", "")

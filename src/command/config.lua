@@ -8,7 +8,7 @@
  --]]
 
 local lfs = require("lfs")
-local json = require("src.util")
+local json = require("src.util.util")
 
 ---Write a point
 ---@param name string
@@ -56,7 +56,17 @@ local points = {
         run = {
             "./out/main"
         }
-    }
+    },
+    ["arduino_uno"] = {
+        version = Version,
+        source = "arduino_uno",
+        build = {
+            "pio run"
+        },
+        run = {
+            "pio run --target upload"
+        }
+    },
 }
 
 ---Write premade points

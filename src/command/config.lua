@@ -136,11 +136,13 @@ return function(arg)
                         build = old_point["build"],
                         run = old_point["run"],
                     }
-                    
+
                     write_point(v, point)
                 end
             end
         end
+    elseif subc == "path" then
+        printf("Pues path: '%s'", PuesPath)
     else
         printf("pues: '%s' is not a recognized subcommand of config", subc)
         os.exit(1)

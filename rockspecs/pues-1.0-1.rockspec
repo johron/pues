@@ -17,10 +17,20 @@ dependencies = {
 }
 build = {
    type = "builtin",
-   modules = {},
+   modules = {
+      ["pues.command.config"] = "pues/command/config.lua",
+      ["pues.command.create"] = "pues/command/create.lua",
+      ["pues.command.exec"] = "pues/command/exec.lua",
+      ["pues.command.help"] = "pues/command/help.lua",
+      ["pues.command.license"] = "pues/command/license.lua",
+      ["pues.command.manage"] = "pues/command/manage.lua",
+      ["pues.util.io"] = "pues/util/io.lua",
+      ["pues.util.json"] = "pues/util/json.lua",
+      ["pues.util.misc"] = "pues/util/misc.lua"
+   },
    install = {
       bin = {
-         ["pues"] = "src/main.lua"
+         ["pues"] = "pues/main.lua"
       }
    },
    copy_directories = {

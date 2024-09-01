@@ -24,15 +24,15 @@ luarocks install pues
     "source": "example",
     "readme": true,
     "managed": true,
-    "build": {
+    "build": [
         "tsc src/main.ts"
-    },
-    "run": {
+    ],
+    "run": [
         "ts-node src/main.ts"
-    },
-    "marked": {
+    ],
+    "marked": [
         "package.json"
-    }
+    ]
 }
 ```
 

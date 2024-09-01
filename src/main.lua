@@ -9,7 +9,7 @@
 
 require("src.util")
 
-Version = "0.0.1"
+Version = "1.0.0"
 PuesPath = string.format("%s/.pues/", os.getenv("HOME"))
 
 if #arg == 0 then

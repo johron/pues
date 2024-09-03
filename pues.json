@@ -1,7 +1,0 @@
-{
-    "name": "pues",
-    "version": "1.0-1",
-    "run": [
-        "lua src/main.lua"
-    ]
-}

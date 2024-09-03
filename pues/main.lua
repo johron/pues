@@ -9,11 +9,11 @@
 
 require("pues.util.io")
 
-Version = "1.0-1"
+Version = "1.1-1-devel"
 PuesPath = string.format("%s/.pues/", os.getenv("HOME"))
 
 if not io.exists(PuesPath) or io.is_dir_empty(PuesPath) then
-    require("pues.command.config")({"install", "all"})
+    require("pues.command.config")({"install", "reload", "all"})
 end
 
 if #arg == 0 then

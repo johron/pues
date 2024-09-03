@@ -9,7 +9,7 @@
 
 require("pues.util.io")
 
-Version = "1.1-1-devel"
+Version = "scm-1"
 PuesPath = string.format("%s/.pues/", os.getenv("HOME"))
 
 if not io.exists(PuesPath) or io.is_dir_empty(PuesPath) then

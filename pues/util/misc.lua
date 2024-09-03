@@ -37,8 +37,12 @@ end
 ---@param y string
 ---@return number result x = 1, y = 2, same = 3
 function _G.highest(x, y)
-    local nx = x:gsub("%.", ""):gsub("%-", ""):gsub("-devel$", "")
-    local ny = y:gsub("%.", ""):gsub("%-", ""):gsub("-devel$", "")
+    if y == "scm-1" then
+        return 3 -- if it's a developer version, don't care
+    end
+
+    local nx = x:gsub("%.", ""):gsub("%-", "")
+    local ny = y:gsub("%.", ""):gsub("%-", "")
 
     if nx == ny then
         return 3

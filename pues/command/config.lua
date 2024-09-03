@@ -103,8 +103,19 @@ local function move_archives()
     local syspath = "/lib/luarocks/rocks-" .. _VERSION:gsub("Lua ", "") .. "/pues/" .. Version .. "/archives/"
     local userpath = os.getenv("HOME") .. "/.luarocks/lib/luarocks/rocks-" .. _VERSION:gsub("Lua ", "") .. "/pues/" .. Version .. "/archives/"
 
-    if string.find(Version, "-devel") then
-        syspath = "archives/"
+    if Version == "scm-1" then
+        local is_luarocks = false
+
+        for path in string.gmatch(package.path, "([^;]+)") do
+            if path:find("luarocks") then
+                is_luarocks = true
+                break
+            end
+        end
+
+        if not is_luarocks then
+            syspath = "archives/"
+        end
     end
 
     if io.exists(syspath) then

@@ -36,18 +36,26 @@ luarocks install pues
 }
 ```
 
-## Testing / Running local project
-- Make sure pues is **not** installed as it will mess with module requiring
-- Make sure necessary dependencies are installed, see latest rockspec
-```bash
-lua pues/main.lua
-```
-
 ## Building
 - Make sure necessary dependencies are installed, see latest rockspec
 ```bash
 luarocks make rockspecs/pues-(version).rockspec
 ```
 
+
+## Testing / Running local project
+- Make sure pues is installed as the scm-1 version if you have built by luarocks to test or **remove** pues.
+    - This is because lua tries running the installed modules instead of the local modules from source control.
+- Make sure necessary dependencies are installed, see latest rockspec
+
+### From source control
+```bash
+lua pues/main.lua
+```
+
+### From luarocks built scm-1 version
+```
+pues
+```
 ## License
 - This source code is subject to the terms of the GNU General Public License, version 3. [License](./LICENSE.md)

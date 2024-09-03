@@ -54,7 +54,7 @@ lua pues/main.lua
 ```
 
 ### From luarocks built scm-1 version
-```
+```bash
 pues
 ```
 ## License

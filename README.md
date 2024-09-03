@@ -36,5 +36,18 @@ luarocks install pues
 }
 ```
 
+## Testing / Running local project
+- Make sure pues is **not** installed as it will mess with module requiring
+- Make sure necessary dependencies are installed, see latest rockspec
+```bash
+lua pues/main.lua
+```
+
+## Building
+- Make sure necessary dependencies are installed, see latest rockspec
+```bash
+luarocks make rockspecs/pues-(version).rockspec
+```
+
 ## License
 - This source code is subject to the terms of the GNU General Public License, version 3. [License](./LICENSE.md)

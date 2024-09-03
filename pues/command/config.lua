@@ -100,7 +100,14 @@ local function has_name_of_point(name)
 end
 
 local function move_archives()
-    os.execute("cp -r" .. " archives/ " .. PuesPath)
+    local syspath = "/lib/luarocks/rocks-" .. _VERSION:gsub("Lua ", "") .. "/pues/" .. Version .. "/archives/"
+    local userpath = os.getenv("HOME") .. "/.luarocks/lib/luarocks/rocks-" .. _VERSION:gsub("Lua ", "") .. "/pues/" .. Version .. "/archives/"
+
+    if io.exists(syspath) then
+        os.execute("cp -r " .. syspath .. " " .. PuesPath)
+    else
+        os.execute("cp -r " .. userpath .. " " .. PuesPath)
+    end
 end
 
 ---Generates configs

@@ -6,8 +6,6 @@
 luarocks install pues
 ```
 
-TODO: akkurat nå kan ikke programmet kopiere "archives/" siden den ikke finner den... aaa
-
 ## Point documentation
 - `version`: The version this point was made for
 - `source`?: Name of zip archive located in '~/.pues/archives/' without extention

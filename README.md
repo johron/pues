@@ -20,6 +20,7 @@ luarocks install pues
     }
 }
 ```
+- [ ] Make error messages more uniform throughout the application
 
 ## Point documentation
 - `version`: The version this point was made for

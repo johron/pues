@@ -6,6 +6,21 @@
 luarocks install pues
 ```
 
+## Todo
+- [ ] Adding a way to install project dependencies point syntax like this?:
+```json
+{
+    "dependencies": {
+        "npm install": [ // the command to install the dependency
+            "typescript"
+        ],
+        "luarocks install": [
+            "luafilesystem"
+        ]
+    }
+}
+```
+
 ## Point documentation
 - `version`: The version this point was made for
 - `source`?: Name of zip archive located in '~/.pues/archives/' without extention

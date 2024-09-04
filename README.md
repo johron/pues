@@ -69,7 +69,7 @@ luarocks make rockspecs/pues-(version).rockspec
 lua pues/main.lua
 ```
 
-### From luarocks built scm-1 version
+### From rockspec built version
 ```bash
 pues
 ```

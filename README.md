@@ -5,6 +5,7 @@
 ```bash
 luarocks install pues
 ```
+- \*The dependency luazip is dependent on zzip which may not be preinstalled\*
 
 ## Todo
 - [ ] Adding a way to install project dependencies from package managers point syntax like this?:

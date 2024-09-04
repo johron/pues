@@ -22,6 +22,7 @@ luarocks install pues
 }
 ```
 - [ ] Make error messages more uniform throughout the application
+- [ ] Turns out this only works for fedora systems as the locating in config for copying of archives/ is only like that on fedora (or atleast my system)
 
 ## Point documentation
 - `version`: The version this point was made for

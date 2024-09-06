@@ -100,19 +100,18 @@ local function has_name_of_point(name)
 end
 
 local function move_archives()
-    local syspath = "/lib/luarocks/rocks-" .. _VERSION:gsub("Lua ", "") .. "/pues/" .. Version .. "/archives/"
-    local userpath = os.getenv("HOME") .. "/.luarocks/lib/luarocks/rocks-" .. _VERSION:gsub("Lua ", "") .. "/pues/" .. Version .. "/archives/"
-
     local archives_path = nil
 
     local archive_paths = {
         "/usr/local/lib/luarocks/rocks-{lua_ver}/pues/{pues_ver}/archives/",
         "/usr/lib/luarocks/rocks-{lua_ver}/pues/{pues_ver}/archives/",
         "/lib/luarocks/rocks-{lua_ver}/pues/{pues_ver}/archives/",
+        "{home}/.luarocks/lib/luarocks/rocks-{lua_ver}/pues/{pues_ver}/archives/"
     }
 
     for i, v in pairs(archive_paths) do
         local path = v:gsub("{lua_ver}", _VERSION:gsub("Lua ", "")):gsub("{pues_ver}", Version)
+        path = path:gsub("{user}", string(os.getenv("HOME")))
         if io.exists(path) and not io.is_dir_empty(path) then
             archives_path = path
             break

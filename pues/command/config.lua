@@ -103,6 +103,21 @@ local function move_archives()
     local syspath = "/lib/luarocks/rocks-" .. _VERSION:gsub("Lua ", "") .. "/pues/" .. Version .. "/archives/"
     local userpath = os.getenv("HOME") .. "/.luarocks/lib/luarocks/rocks-" .. _VERSION:gsub("Lua ", "") .. "/pues/" .. Version .. "/archives/"
 
+    local archives_path = nil
+
+    local archive_paths = {
+        "/usr/local/lib/luarocks/rocks-{lua_ver}/pues/{pues_ver}/archives/",
+        "/usr/lib/luarocks/rocks-{lua_ver}/pues/{pues_ver}/archives/",
+        "/lib/luarocks/rocks-{lua_ver}/pues/{pues_ver}/archives/",
+    }
+
+    for i, v in pairs(archive_paths) do
+        if io.exists(v) and not io.is_dir_empty(v) then
+            archives_path = v
+            break
+        end
+    end
+
     if Version == "scm-1" then
         local is_luarocks = false
 
@@ -114,15 +129,16 @@ local function move_archives()
         end
 
         if not is_luarocks then
-            syspath = "archives/"
+            archives_path = "archives/"
         end
     end
 
-    if io.exists(syspath) then
-        os.execute("cp -r " .. syspath .. " " .. PuesPath)
-    else
-        os.execute("cp -r " .. userpath .. " " .. PuesPath)
+    if archives_path == nil then
+        print("pues: couldn't find the path for 'archives/'")
+        os.exit(1)
     end
+
+    os.execute("cp -r " .. archives_path .. " " .. PuesPath)
 end
 
 local function reload_custom_points()

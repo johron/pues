@@ -212,7 +212,7 @@ return function(arg)
 
             reload_custom_points()
         elseif terc == "all" then
-            if arg[1] == "initialize" then
+            if arg[1] == "setup" then
                 print("Setting up for first run..")
             else
                 local agreed = assure("Are you sure? This will rewrite and update all your configurations, which could break them.")

@@ -139,12 +139,14 @@ local function move_archives()
     end
 
     if archives_path:match("{home}") then
-        if not os.getenv("HOME") then
+        local home = os.getenv("HOME")
+
+        if not home then
             print("pues: couldn't get home directory for user")
             os.exit(1)
         end
-        
-        archives_path = archives_path:gsub("{home}", os.getenv("HOME"))
+
+        archives_path = archives_path:gsub("{home}", home)
     end
 
     os.execute("cp -r " .. archives_path .. " " .. PuesPath)

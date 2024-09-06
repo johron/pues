@@ -12,6 +12,10 @@ RUN apt-get update && apt-get install -y \
     nano \
     luarocks
 
+RUN luarocks install luafilesystem
+RUN luarocks install lunajson
+RUN luarocks install luazip
+
 RUN lua -v && luarocks --version
 RUN echo 'root:docker' | chpasswd
 RUN echo 'ubuntu:docker' | chpasswd

@@ -13,7 +13,7 @@ Version = "scm-1"
 PuesPath = string.format("%s/.pues/", os.getenv("HOME"))
 
 if not io.exists(PuesPath) or io.is_dir_empty(PuesPath) then
-    require("pues.command.config")({"install", "reload", "all"})
+    require("pues.command.config")({"initialize", "reload", "all"})
 end
 
 if #arg == 0 then

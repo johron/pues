@@ -135,7 +135,7 @@ local function move_archives()
     end
 
     if archives_path == nil then
-        print("pues: couldn't find the path for 'archives/'")
+        print("pues: couldn't find the path for 'archives/', please download this folder from github")
         os.exit(1)
     end
 

@@ -56,7 +56,7 @@ local points = {
             "gcc src/main.c -o out/main"
         },
         run = {
-            "./out/main"
+            "gcc src/main.c -o out/main && ./out/main"
         }
     },
     ["arduino_uno"] = {

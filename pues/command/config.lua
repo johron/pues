@@ -112,7 +112,7 @@ local function move_archives()
     }
 
     for i, v in pairs(archive_paths) do
-        local path = v:gsub("{lua-ver}", _VERSION):gsub("{pues_ver}", Version)
+        local path = v:gsub("{lua_ver}", _VERSION:gsub("Lua ", "")):gsub("{pues_ver}", Version)
         if io.exists(path) and not io.is_dir_empty(path) then
             archives_path = path
             break

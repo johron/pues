@@ -10,6 +10,7 @@ luarocks install pues
 ## Todo
 - [ ] Adding a way to install project dependencies from package managers point syntax like this?:
 ```json
+1:
 {
     "dependencies": {
         "npm install": [ // the command to install the dependency
@@ -18,6 +19,18 @@ luarocks install pues
         "luarocks install": [
             "luafilesystem"
         ]
+    }
+}
+2:
+{
+    "dependencies": {
+        "npm": {
+            "command": "npm install",
+            "packages": [
+                "typescript",
+                "example@2.1.5"
+            ]
+        }
     }
 }
 ```

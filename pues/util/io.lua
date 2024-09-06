@@ -125,7 +125,7 @@ end
 ---@param msg string Message
 ---@param type string|nil {"n", "a", "l", "L"}
 function _G.input(msg, type)
-    type = type or "l"
+    type = type or "*l"
     io.write(msg)
     return io.read(type)
 end

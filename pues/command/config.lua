@@ -110,8 +110,8 @@ local function move_archives()
     }
 
     for i, v in pairs(archive_paths) do
+        if not os.getenv("HOME") then os.exit(1) end
         local path = v:gsub("{lua_ver}", _VERSION:gsub("Lua ", "")):gsub("{pues_ver}", Version)
-        path = path:gsub("{user}", string(os.getenv("HOME")))
         if io.exists(path) and not io.is_dir_empty(path) then
             archives_path = path
             break
@@ -136,6 +136,15 @@ local function move_archives()
     if archives_path == nil then
         print("pues: couldn't find the path for 'archives/', please download this folder from github")
         os.exit(1)
+    end
+
+    if archives_path:match("{home}") then
+        if not os.getenv("HOME") then
+            print("pues: couldn't get home directory for user")
+            os.exit(1)
+        end
+        
+        archives_path = archives_path:gsub("{home}", os.getenv("HOME"))
     end
 
     os.execute("cp -r " .. archives_path .. " " .. PuesPath)

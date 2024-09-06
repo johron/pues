@@ -59,6 +59,7 @@ return function(arg)
     local build = point_table["build"]
     local run = point_table["run"]
     local marked = point_table["marked"]
+    local dependencies = point_table["dependencies"]
 
     check_version(version, false)
 
@@ -92,6 +93,10 @@ return function(arg)
 
         if run then
             local_config.run = run
+        end
+
+        if dependencies then
+            local_config.dependencies = dependencies
         end
 
         io.write_file("pues.json", json.encode(local_config))

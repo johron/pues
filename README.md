@@ -47,6 +47,7 @@ luarocks install pues
 - `build`?: Table of shell commands
 - `run`?: Table of shell commands
 - `marked`?: Files where '%{name}' should be replaced with project name
+- `dependencies`?: Project dependencies
 
 ## Example Point
 ```json
@@ -63,7 +64,16 @@ luarocks install pues
     ],
     "marked": [
         "package.json"
-    ]
+    ],
+    "dependencies": {
+        "npm": {
+            "command": "npm install",
+            "packages": [
+                "example@2.1.5",
+                "package"
+            ]
+        }
+    }
 }
 ```
 

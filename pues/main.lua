@@ -9,7 +9,7 @@
 
 require("pues.util.io")
 
-Version = "1.0-3"
+Version = "scm-1"
 PuesPath = string.format("%s/.pues/", os.getenv("HOME"))
 
 if not io.exists(PuesPath) or io.is_dir_empty(PuesPath) then
@@ -36,6 +36,8 @@ elseif #arg >= 1 then
         require("pues.command.license")(arg)
     elseif subc == "manage" or subc == "m" then
         require("pues.command.manage")(arg)
+    elseif subc == "install" or subc == "i" then
+        require("pues.command.install")(arg)
     else
         printf("pues: '%s' is not a pues command. See 'pues --help'", arg[1])
     end

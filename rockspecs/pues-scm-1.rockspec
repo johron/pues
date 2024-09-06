@@ -24,6 +24,7 @@ build = {
       ["pues.command.help"] = "pues/command/help.lua",
       ["pues.command.license"] = "pues/command/license.lua",
       ["pues.command.manage"] = "pues/command/manage.lua",
+      ["pues.command.install"] = "pues/command/install.lua",
       ["pues.util.io"] = "pues/util/io.lua",
       ["pues.util.json"] = "pues/util/json.lua",
       ["pues.util.misc"] = "pues/util/misc.lua"

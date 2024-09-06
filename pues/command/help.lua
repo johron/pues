@@ -48,12 +48,17 @@ function help.manage()
     print("  <point> -> the point you want to use")
 end
 
+function help.install()
+    print_usage()
+end
+
 function help.short()
     print_usage()
     print("commands:")
     print("  create     Create a new projcet")
     print("  config     Update your configurations and points")
     print("  license    Add a license to a project")
+    print("  manage     Turn a project to a pues managed project")
     print("  build      Run build commands from project configuration")
     print("  run        Execute run commands from project configuration")
     print()

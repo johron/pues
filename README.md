@@ -34,7 +34,7 @@ luarocks install pues
     }
 }
 ```
-- [ ] Make error messages more uniform throughout the application
+- [ ] Make error messages more uniform throughout the application, errorcodes?
 - [ ] Turns out this only works for fedora systems as the locating in config for copying of archives/ is only like that on fedora (or atleast my system)
 - [ ] Add support to download the archives/ folder from the web if cannot get the path or as the main way?
 

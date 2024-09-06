@@ -10,7 +10,7 @@ description = {
    license = "GPL-3.0"
 }
 dependencies = {
-   "lua>=5.4",
+   "lua>=5.1",
    "luafilesystem>=1.8.0-1",
    "lunajson>=1.2.3-1",
    "luazip>=1.2.5-1"

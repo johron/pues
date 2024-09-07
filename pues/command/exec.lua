@@ -24,7 +24,7 @@ local function loop_over_and_exec(conf, isrun, arg)
 
             if isrun then
                 for i, v in ipairs(arg) do
-                    if i ~= 1 then
+                    if i ~= #arg then
                         table.insert(newarg, v)
                     end
                 end

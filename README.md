@@ -63,7 +63,6 @@ luarocks install pues
 luarocks make rockspecs/pues-(version).rockspec
 ```
 
-
 ## Testing / Running local project
 - Make sure pues is installed as the scm-1 version if you have built by luarocks to test or **remove** pues.
     - This is because lua tries running the installed modules instead of the local modules from source control.

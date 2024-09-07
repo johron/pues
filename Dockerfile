@@ -20,6 +20,9 @@ RUN lua -v && luarocks --version
 RUN echo 'root:docker' | chpasswd
 RUN echo 'ubuntu:docker' | chpasswd
 
-RUN su ubuntu -c "git clone https://github.com/johron/pues /home/ubuntu/pues"
+ADD . /home/ubuntu/pues
+
+USER ubuntu
+WORKDIR /home/ubuntu/pues
 
 CMD ["/bin/bash"]

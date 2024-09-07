@@ -8,30 +8,11 @@ luarocks install pues
 - \*The dependency luazip is dependent on zzip which may not be preinstalled\*
 
 ## Todo
-- [ ] Adding a way to install project dependencies from package managers point syntax like this?:
-```json
-{
-    "dependencies": {
-        "npm": {
-            "command": "npm install",
-            "packages": [
-                "typescript",
-                "example@2.1.5"
-            ]
-        },
-        "luarocks": {
-            "command": "luarocks install",
-            "packages": [
-                "cool_module 0.1-1"
-            ]
-        }
-    }
-}
-```
-- [ ] Make error messages more uniform throughout the application, errorcodes?
+- [ ] Make error messages more uniform throughout the application
 - [ ] Change version notifying to only happen if the gap is too big
 - [ ] Add ability for pues run to take input in programs
-- [ ] Move ~/.pues to ~/.config/pues, mabye?
+- [ ] Move ~/.pues to ~/.config/pues
+- [ ] Update this readme to have better help on how to test/run/build and develop
 
 ## Point documentation
 - `version`: The version this point was made for

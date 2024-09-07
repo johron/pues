@@ -35,9 +35,27 @@ return function(arg)
     local dependencies = config["dependencies"]
 
     if not dependencies then
-        print("pues: not dependencies mentioned in configuration")
+        print("pues: no dependencies mentioned in configuration")
         os.exit(1)
     end
 
-    print(config_file)
+    for i, v in pairs(dependencies) do
+        --print(i, json.encode(v))
+
+        local command = v["command"]
+        local packages = v["packages"]
+
+        if not command or #command == 0 then
+            print("pues: missing command property for the '%s' package manager in dependencies part of point", i)
+            os.exit(1)
+        end
+
+        if not packages then
+            print("pues: missing packages property for the '%s' package manager in dependencies part of point", i)
+            os.exit(1)
+        end
+
+        print(command)
+        print(json.encode(packages))
+    end
 end

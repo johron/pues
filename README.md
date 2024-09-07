@@ -30,6 +30,12 @@ luarocks install pues
                 "typescript",
                 "example@2.1.5"
             ]
+        },
+        "luarocks": {
+            "command": "luarocks install",
+            "packages": [
+                "cool_module 0.1-1"
+            ]
         }
     }
 }
@@ -49,6 +55,9 @@ luarocks install pues
 - `run`?: Table of shell commands
 - `marked`?: Files where '%{name}' should be replaced with project name
 - `dependencies`?: Project dependencies
+    - Table with name as the package manager name
+        - `command`: The command to install with the package manager
+        - `packages`: Table with the packages to be installed
 
 ## Example Point
 ```json

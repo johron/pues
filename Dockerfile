@@ -20,9 +20,11 @@ RUN lua -v && luarocks --version
 RUN echo 'root:docker' | chpasswd
 RUN echo 'ubuntu:docker' | chpasswd
 
-ADD . /home/ubuntu/pues
-
 USER ubuntu
 WORKDIR /home/ubuntu/pues
+
+ADD . /home/ubuntu/pues
+
+RUN echo 'test() {\nlua /home/ubuntu/pues/pues/main.lua "$@"\n}' >> /home/ubuntu/.bashrc
 
 CMD ["/bin/bash"]

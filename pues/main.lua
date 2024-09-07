@@ -8,9 +8,10 @@
  --]]
 
 require("pues.util.io")
+require("pues.util.misc")
 
 Version = "scm-1"
-PuesPath = string.format("%s/.pues/", os.getenv("HOME"))
+PuesPath = string.format("/home/%s/.pues/", get_user())
 
 if not io.exists(PuesPath) or io.is_dir_empty(PuesPath) then
     require("pues.command.config")({"setup", "reload", "all"})

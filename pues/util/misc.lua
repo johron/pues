@@ -78,3 +78,48 @@ function _G.check_version(version, project)
         os.exit(1)
     end
 end
+
+local function execute_command(command)
+    local handle = io.popen(command)
+    if handle == nil then
+        print("pues: error executing command for getting current user")
+        os.exit(1)
+    end
+
+    local result = handle:read("*a")
+    handle:close()
+    return result:gsub("\n", "")
+end
+
+function _G.get_user()
+    local wh_user = execute_command("whoami")
+    if wh_user ~= "" and wh_user ~= "root" then
+        return wh_user
+    end
+
+    local user = os.getenv("USER")
+    if not user then
+        user = execute_command("logname")
+        if user == "" then
+            user = os.getenv("LOGNAME")
+        end
+    end
+
+    if user == "root" or wh_user == "root" then
+        local sudo_user = os.getenv("SUDO_USER")
+        if sudo_user then
+            return sudo_user
+        end
+
+        local pkexec_uid = os.getenv("PKEXEC_UID")
+        if pkexec_uid then
+            local ent_user = execute_command("getent passwd " .. pkexec_uid .. " | cut -d: -f1")
+            if ent_user ~= "" then
+                return ent_user
+            end
+        end
+    end
+
+    print("pues: couldn't get current user")
+    os.exit(1)
+end

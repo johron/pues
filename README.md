@@ -36,6 +36,7 @@ luarocks install pues
 ```
 - [ ] Make error messages more uniform throughout the application, errorcodes?
 - [ ] Change version notifying to only happen if the gap is too big
+- [ ] Add ability for pues run to take input in programs
 
 ## Point documentation
 - `version`: The version this point was made for

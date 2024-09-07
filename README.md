@@ -13,6 +13,7 @@ luarocks install pues
 - [ ] Add ability for pues run to take input in programs
 - [ ] Move ~/.pues to ~/.config/pues
 - [ ] Update this readme to have better help on how to test/run/build and develop
+- [ ] Rename 'point(s)' to something else???
 
 ## Point documentation
 - `version`: The version this point was made for

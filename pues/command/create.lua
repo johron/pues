@@ -32,34 +32,34 @@ return function(arg)
     local project_name = subc
 
     if not terc then
-        print("pues: requires tertiary argument for point, see 'pues create --help'")
+        print("pues: requires tertiary argument for blueprint, see 'pues create --help'")
         os.exit(1)
     end
 
-    local point_name = terc
+    local blueprint_name = terc
 
-    local point_path = PuesPath .. "points/" ..point_name .. ".json"
+    local blueprint_path = PuesPath .. "blueprints/" .. blueprint_name .. ".json"
 
-    if not io.exists(point_path) then
-        printf("pues: supplied point '%s' does not exist in ~/.pues/points/", point_name)
+    if not io.exists(blueprint_path) then
+        printf("pues: supplied blueprint '%s' does not exist in ~/.pues/blueprints/", blueprint_name)
         os.exit(1)
     end
 
-    local point_json = io.read_file(point_path)
-    if not point_json then
-        print("pues: supplied point is empty")
+    local blueprint_json = io.read_file(blueprint_path)
+    if not blueprint_json then
+        print("pues: supplied blueprint is empty")
         os.exit(1)
     end
 
-    local point_table = json.decode(point_json)
-    local version = point_table["version"]
-    local source = point_table["source"]
-    local readme = point_table["readme"]
-    local managed = point_table["managed"]
-    local build = point_table["build"]
-    local run = point_table["run"]
-    local marked = point_table["marked"]
-    local dependencies = point_table["dependencies"]
+    local blueprint_table = json.decode(blueprint_json)
+    local version = blueprint_table["version"]
+    local source = blueprint_table["source"]
+    local readme = blueprint_table["readme"]
+    local managed = blueprint_table["managed"]
+    local build = blueprint_table["build"]
+    local run = blueprint_table["run"]
+    local marked = blueprint_table["marked"]
+    local dependencies = blueprint_table["dependencies"]
 
     check_version(version, false)
 
@@ -103,7 +103,7 @@ return function(arg)
     end
 
     if readme == true then
-        local readme_str = string.format("# %s", project_name, point_name)
+        local readme_str = string.format("# %s", project_name, blueprint_name)
 
         if build then readme_str = readme_str .. "\n\n## Build\n- `pues build`" end
         if run then readme_str = readme_str .. "\n\n## Run\n- `pues run`" end

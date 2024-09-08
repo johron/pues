@@ -12,15 +12,15 @@ local json = require("pues.util.json")
 
 require("pues.util.misc")
 
----Write a point
+---Write a blueprint
 ---@param name string
 ---@param lua_table table
-local function write_point(name, lua_table)
+local function write_blueprint(name, lua_table)
     local json_string = json.encode(lua_table)
-    io.write_file(PuesPath .. "points/" .. name .. ".json", json_string)
+    io.write_file(PuesPath .. "blueprints/" .. name .. ".json", json_string)
 end
 
-local points = {
+local blueprints = {
     ["blank"] = {
         version = Version,
     },
@@ -71,27 +71,27 @@ local points = {
     },
 }
 
----Write premade points
-local function write_points()
+---Write premade blueprints
+local function write_blueprints()
     if not io.exists(PuesPath) then
         lfs.mkdir(PuesPath)
     end
 
-    if not io.exists(PuesPath .. "points/") then
-        lfs.mkdir(PuesPath .. "points/")
+    if not io.exists(PuesPath .. "blueprints/") then
+        lfs.mkdir(PuesPath .. "blueprints/")
     end
 
     if not io.exists(PuesPath .. "archives/") then
         lfs.mkdir(PuesPath .. "archives/")
     end
 
-    for i, v in pairs(points) do
-        write_point(i, v)
+    for i, v in pairs(blueprints) do
+        write_blueprint(i, v)
     end
 end
 
-local function has_name_of_point(name)
-    for key, _ in pairs(points) do
+local function has_name_of_blueprint(name)
+    for key, _ in pairs(blueprints) do
       if key == name then
         return true
       end
@@ -152,25 +152,25 @@ local function move_archives()
     os.execute("cp -r " .. archives_path .. " " .. PuesPath)
 end
 
-local function reload_custom_points()
-    for v in lfs.dir(PuesPath .. "points/") do
+local function reload_custom_blueprints()
+    for v in lfs.dir(PuesPath .. "blueprints/") do
         local v = v:gsub(".json$", "")
         if not (v == "." or v == "..") then
-            if not has_name_of_point(v) then
-                local old_point_str = io.read_file(PuesPath .. "points/" .. v .. ".json")
-                if old_point_str == nil then print("pues: error reading current point") os.exit(1) end
-                local old_point = json.decode(old_point_str)
+            if not has_name_of_blueprint(v) then
+                local old_blueprint_str = io.read_file(PuesPath .. "blueprints/" .. v .. ".json")
+                if old_blueprint_str == nil then print("pues: error reading current blueprint") os.exit(1) end
+                local old_blueprint = json.decode(old_blueprint_str)
 
-                local point = {
+                local blueprint = {
                     version = Version,
-                    source = old_point["source"],
-                    readme = old_point["readme"],
-                    managed = old_point["managed"],
-                    build = old_point["build"],
-                    run = old_point["run"],
+                    source = old_blueprint["source"],
+                    readme = old_blueprint["readme"],
+                    managed = old_blueprint["managed"],
+                    build = old_blueprint["build"],
+                    run = old_blueprint["run"],
                 }
 
-                write_point(v, point)
+                write_blueprint(v, blueprint)
             end
         end
     end
@@ -195,22 +195,22 @@ return function(arg)
         end
 
         if terc == "premade" then
-            local agreed = assure("Are you sure? This will override your current premade points.")
+            local agreed = assure("Are you sure? This will override your current premade blueprints.")
             if not agreed then
                 print("pues: operation aborted")
                 os.exit(0)
             end
 
             move_archives()
-            write_points()
+            write_blueprints()
         elseif terc == "custom" then
-            local agreed = assure("Are you sure? This will update all custom points, which could break them.")
+            local agreed = assure("Are you sure? This will update all custom blueprints, which could break them.")
             if not agreed then
                 print("pues: operation aborted")
                 os.exit(0)
             end
 
-            reload_custom_points()
+            reload_custom_blueprints()
         elseif terc == "all" then
             if arg[1] == "setup" then
                 print("Setting up for first run..")
@@ -221,9 +221,9 @@ return function(arg)
                 end
             end
 
-            write_points()
+            write_blueprints()
             move_archives()
-            reload_custom_points()
+            reload_custom_blueprints()
         end
     elseif subc == "path" then
         printf("Pues path: '%s'", PuesPath)

@@ -9,12 +9,12 @@
 
 local json = require("pues.util.json")
 
----Read point configuration
- ---@param point string
+---Read blueprint configuration
+ ---@param blueprint string
  ---@return table luatable
- function _G.get_point(point)
-    local config = io.read_file(PuesPath .. "points/" .. point .. ".json")
-    if config == nil then printf("pues: point '%s' not found: please make sure this point exists", point) os.exit(1) end
+ function _G.get_blueprint(blueprint)
+    local config = io.read_file(PuesPath .. "blueprints/" .. blueprint .. ".json")
+    if config == nil then printf("pues: blueprint '%s' not found: please make sure this blueprint exists", blueprint) os.exit(1) end
 
     return json.decode(config)
 end
@@ -61,7 +61,7 @@ function _G.check_version(version, project)
     if result == 1 then
         local agreed
         if project == false then
-            agreed = assure(string.format("Are you sure? Point config has an older version (%s) than current program version (%s). Using this config can have consequences.", version, Version))
+            agreed = assure(string.format("Are you sure? Blueprint config has an older version (%s) than current program version (%s). Using this config can have consequences.", version, Version))
         else
             agreed = assure(string.format("Are you sure? Project config has an older version (%s) than current program version (%s). Using this config can have consequences.", version, Version))
         end
@@ -71,7 +71,7 @@ function _G.check_version(version, project)
         end
     elseif result == 2 then
         if project == false then
-            printf("pues: point config version (%s) is higher than program version (%s)", version, Version)
+            printf("pues: blueprint config version (%s) is higher than program version (%s)", version, Version)
         else
             printf("pues: project config version (%s) is higher than program version (%s)", version, Version)
         end

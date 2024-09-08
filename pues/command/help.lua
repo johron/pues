@@ -22,15 +22,15 @@ function help.config()
     print("    all -> updates all configurations, including project configuration")
     print("           if working directory contains one, with new version numbers and")
     print("           fields that new versions may have (may break older configs)")
-    print("    premade -> rewrites all the premade points")
-    print("    custom -> rewrites all custom points")
+    print("    premade -> rewrites all the premade blueprints")
+    print("    custom -> rewrites all custom blueprints")
     print("  path -> print out pues configuration path")
 end
 
 function help.create()
     print_usage()
     print("argument(s):")
-    print("  <name> <point> -> the name of the proejct and the point you want to generate")
+    print("  <name> <blueprint> -> the name of the proejct and the blueprint you want to generate")
 end
 
 function help.license()
@@ -45,14 +45,14 @@ end
 function help.manage()
     print_usage()
     print("argument(s):")
-    print("  <point> -> the point you want to use")
+    print("  <blueprint> -> the blueprint you want to use")
 end
 
 function help.short()
     print_usage()
     print("commands:")
     print("  create     Create a new projcet")
-    print("  config     Update your configurations and points")
+    print("  config     Update your configurations and blueprints")
     print("  license    Add a license to a project")
     print("  manage     Turn a project to a pues managed project")
     print("  install    Install the project's dependencies")

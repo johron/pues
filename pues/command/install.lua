@@ -46,12 +46,12 @@ return function(arg)
         local packages = v["packages"]
 
         if not command or #command == 0 then
-            printf("pues: missing command property for the '%s' package manager in dependencies part of point", i)
+            printf("pues: missing command property for the '%s' package manager in dependencies part of blueprint", i)
             os.exit(1)
         end
 
         if not packages then
-            printf("pues: missing packages property for the '%s' package manager in dependencies part of point", i)
+            printf("pues: missing packages property for the '%s' package manager in dependencies part of blueprint", i)
             os.exit(1)
         end
 

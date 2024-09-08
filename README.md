@@ -13,10 +13,9 @@ luarocks install pues
 - [ ] Add ability for pues run to take input in programs
 - [ ] Move ~/.pues to ~/.config/pues
 - [ ] Update this readme to have better help on how to test/run/build and develop
-- [ ] Rename 'point(s)' to something else???
 
-## Point documentation
-- `version`: The version this point was made for
+## Blueprint documentation
+- `version`: The version this blueprint was made for
 - `source`?: Name of zip archive located in '~/.pues/archives/' without extention
 - `readme`?: If a readme should be included
     - default = false
@@ -30,7 +29,7 @@ luarocks install pues
         - `command`: The command to install with the package manager
         - `packages`: Table with the packages to be installed
 
-## Example Point
+## Example Blueprint
 ```json
 {
     "version": "0.0.1",

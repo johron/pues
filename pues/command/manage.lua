@@ -17,7 +17,7 @@ require("pues.util.misc")
 return function(arg)
     local subc = arg[2]
     if not subc then
-        print("pues: 'manage' requires a secondary argument [point | --help|-h]")
+        print("pues: 'manage' requires a secondary argument [blueprint | --help|-h]")
         os.exit(1)
     end
 
@@ -38,30 +38,30 @@ return function(arg)
         name = terc
     end
 
-    local point_name
+    local blueprint_name
 
     if subc then
-        point_name = subc
+        blueprint_name = subc
     end
 
-    local point_path = PuesPath .. "points/" ..point_name .. ".json"
+    local blueprint_path = PuesPath .. "blueprints/" .. blueprint_name .. ".json"
 
-    if not io.exists(point_path) then
-        printf("pues: supplied point '%s' does not exist in ~/.pues/points/", point_name)
+    if not io.exists(blueprint_path) then
+        printf("pues: supplied blueprint '%s' does not exist in ~/.pues/blueprints/", blueprint_name)
         os.exit(1)
     end
 
-    local point_json = io.read_file(point_path)
-    if not point_json then
-        print("pues: supplied point is empty")
+    local blueprint_json = io.read_file(blueprint_path)
+    if not blueprint_json then
+        print("pues: supplied blueprint is empty")
         os.exit(1)
     end
 
-    local point_table = json.decode(point_json)
-    local version = point_table["version"]
-    local build = point_table["build"]
-    local run = point_table["run"]
-    local dependencies = point_table["dependencies"]
+    local blueprint_table = json.decode(blueprint_json)
+    local version = blueprint_table["version"]
+    local build = blueprint_table["build"]
+    local run = blueprint_table["run"]
+    local dependencies = blueprint_table["dependencies"]
 
     check_version(version, false)
 

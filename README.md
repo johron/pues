@@ -11,13 +11,12 @@ luarocks install pues
 - [ ] Make error messages more uniform throughout the application
 - [ ] Change version notifying to only happen if the gap is too big, remake the version checking system
 - [ ] Add ability for pues run to take input in programs
-- [ ] Move ~/.pues to ~/.config/pues
 - [ ] Update this readme to have better help on how to test/run/build and develop
 - [ ] Write better comments for functions or give better names
 
 ## Blueprint documentation
 - `version`: The version this blueprint was made for
-- `source`?: Name of zip archive located in '~/.pues/archives/' without extention
+- `source`?: Name of zip archive located in '~/.config/pues/archives/' without extention
 - `readme`?: If a readme should be included
     - default = false
 - `managed`?: If the project should be managed by pues

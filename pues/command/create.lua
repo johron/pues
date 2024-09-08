@@ -41,7 +41,7 @@ return function(arg)
     local blueprint_path = PuesPath .. "blueprints/" .. blueprint_name .. ".json"
 
     if not io.exists(blueprint_path) then
-        printf("pues: supplied blueprint '%s' does not exist in ~/.pues/blueprints/", blueprint_name)
+        printf("pues: supplied blueprint '%s' does not exist", blueprint_name)
         os.exit(1)
     end
 

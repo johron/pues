@@ -11,7 +11,6 @@ local json = require("pues.util.json")
 
 ---Ask for assurance from user
 ---@param msg string
----@return boolean agreed
 function _G.assure(msg)
     local answer = input(msg .. " [y/N] ")
 

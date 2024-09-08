@@ -21,7 +21,7 @@ pues --version
 - `dependencies`?: Project dependencies
     - Table with name as the package manager name
         - `command`: The command to install with the package manager
-        - 'packages`: Table with the packages to be installed
+        - `packages`: Table with the packages to be installed
 
 ## Example Blueprint
 ```json

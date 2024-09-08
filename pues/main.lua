@@ -42,5 +42,4 @@ elseif #arg >= 1 then
     else
         printf("pues: '%s' is not a pues command. See 'pues --help'", arg[1])
     end
-    -- there is no next here since this will be handled by the respective command
 end

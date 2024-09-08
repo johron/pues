@@ -33,21 +33,11 @@ local function loop_over_and_exec(conf, isrun, arg)
             add = " " .. table.concat(newarg, " ")
         end
 
-        local handle = io.popen(v .. add .. " 2>&1")
-        if handle == nil then
-            printf("pues: error executing '%s'", v)
+        local error_code = os.execute(v .. add .. " 2>&1")
+        if error_code ~= 0 then
             os.exit(1)
         end
 
-        local result = handle:read("*a")
-        handle:close()
-
-        if result and result ~= "" then
-            local cleaned = result:gsub("^sh: line %d+: ", ""):gsub("\n$", "")
-            if cleaned ~= nil then
-                print(cleaned)
-            end
-        end
     end
 end
 

@@ -37,7 +37,11 @@ end
 ---@param content string
 function io.write_file(path, content)
     local file = io.open(path,"w")
-    if file == nil then print("pues: problem writing file") os.exit(1) end
+    if file == nil then
+        print("pues: problem writing file")
+        os.exit(1)
+    end
+
     file:write(content)
     file:close()
 end

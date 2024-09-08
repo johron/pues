@@ -115,7 +115,6 @@ local function move_archives()
     }
 
     for i, v in pairs(archive_paths) do
-        if not os.getenv("HOME") then os.exit(1) end
         local path = v:gsub("{lua_ver}", _VERSION:gsub("Lua ", "")):gsub("{pues_ver}", Version)
         if io.exists(path) and not io.is_dir_empty(path) then
             archives_path = path
@@ -147,7 +146,7 @@ local function move_archives()
         local home = os.getenv("HOME")
 
         if not home then
-            print("pues: couldn't get home directory for user")
+            print("pues: couldn't get the user's home directory")
             os.exit(1)
         end
 
@@ -163,9 +162,12 @@ local function reload_custom_blueprints()
         if not (v == "." or v == "..") then
             if not has_name_of_blueprint(v) then
                 local old_blueprint_str = io.read_file(PuesPath .. "blueprints/" .. v .. ".json")
-                if old_blueprint_str == nil then print("pues: error reading current blueprint") os.exit(1) end
-                local old_blueprint = json.decode(old_blueprint_str)
+                if old_blueprint_str == nil then
+                    print("pues: error reading current blueprint, blueprint does not exist or is empty")
+                    os.exit(1)
+                end
 
+                local old_blueprint = json.decode(old_blueprint_str)
                 local blueprint = {
                     version = Version,
                     source = old_blueprint["source"],

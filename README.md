@@ -8,9 +8,7 @@ luarocks install pues
 - \*The dependency luazip is dependent on zzip which may not be preinstalled\*
 
 ## Todo
-- [ ] Make error messages more uniform throughout the application
 - [ ] Change version notifying to only happen if the gap is too big, remake the version checking system
-- [ ] Add ability for pues run to take input in programs
 - [ ] Update this readme to have better help on how to test/run/build and develop
 - [ ] Write better comments for functions or give better names
 

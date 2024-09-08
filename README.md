@@ -69,7 +69,7 @@ luarocks make rockspecs/pues-<version>.rockspec
 pues --version
 ```
 
-## Without luarocks
+### Without luarocks
 ```bash
 lua pues/main.lua --version
 ```

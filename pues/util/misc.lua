@@ -9,16 +9,6 @@
 
 local json = require("pues.util.json")
 
----Read blueprint configuration
- ---@param blueprint string
- ---@return table luatable
- function _G.get_blueprint(blueprint)
-    local config = io.read_file(PuesPath .. "blueprints/" .. blueprint .. ".json")
-    if config == nil then printf("pues: blueprint '%s' not found: please make sure this blueprint exists", blueprint) os.exit(1) end
-
-    return json.decode(config)
-end
-
 ---Ask for assurance from user
 ---@param msg string
 ---@return boolean agreed

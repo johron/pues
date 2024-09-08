@@ -1,5 +1,5 @@
 # Pues
-- Project initializer and runner
+- Initialize and manage projects easily with json blueprints
 
 ## Install
 ```bash

@@ -13,6 +13,7 @@ luarocks install pues
 - [ ] Add ability for pues run to take input in programs
 - [ ] Move ~/.pues to ~/.config/pues
 - [ ] Update this readme to have better help on how to test/run/build and develop
+- [ ] Write better comments for functions or give better names
 
 ## Blueprint documentation
 - `version`: The version this blueprint was made for

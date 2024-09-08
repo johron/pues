@@ -30,7 +30,7 @@ return function(arg)
     local config = json.decode(config_file)
     local version = config["version"]
 
-    check_version(version, true)
+    check_version(version)
 
     local dependencies = config["dependencies"]
 

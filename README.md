@@ -8,7 +8,6 @@ luarocks install pues
 - \*The dependency luazip is dependent on zzip which may not be preinstalled\*
 
 ## Todo
-- [ ] Change version notifying to only happen if the gap is too big, remake the version checking system
 - [ ] Update this readme to have better help on how to test/run/build and develop
 - [ ] Write better comments for functions or give better names
 
@@ -25,7 +24,7 @@ luarocks install pues
 - `dependencies`?: Project dependencies
     - Table with name as the package manager name
         - `command`: The command to install with the package manager
-        - `packages`: Table with the packages to be installed
+        - 'packages`: Table with the packages to be installed
 
 ## Example Blueprint
 ```json

@@ -202,30 +202,19 @@ return function(arg)
         end
 
         if terc == "premade" then
-            local agreed = assure("Are you sure? This will override your current premade blueprints.")
-            if not agreed then
-                print("pues: operation aborted")
-                os.exit(0)
-            end
+            assure("Are you sure? This will override your current premade blueprints.")
 
             move_archives()
             write_blueprints()
         elseif terc == "custom" then
-            local agreed = assure("Are you sure? This will update all custom blueprints, which could break them.")
-            if not agreed then
-                print("pues: operation aborted")
-                os.exit(0)
-            end
+            assure("Are you sure? This will update all custom blueprints, which could break them.")
 
             reload_custom_blueprints()
         elseif terc == "all" then
             if arg[1] == "setup" then
                 print("Setting up for first run..")
             else
-                local agreed = assure("Are you sure? This will rewrite and update all your configurations, which could break them.")
-                if not agreed then
-                    print("pues: operation aborted")
-                end
+                assure("Are you sure? This will rewrite and update all your configurations, which could break them.")
             end
 
             write_blueprints()

@@ -60,7 +60,7 @@ return function(arg, mode)
     local config = json.decode(config_file)
     local version = config["version"]
 
-    check_version(version, true)
+    check_version(version)
 
     local conf
 

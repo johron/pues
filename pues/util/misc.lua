@@ -15,56 +15,50 @@ local json = require("pues.util.json")
 function _G.assure(msg)
     local answer = input(msg .. " [y/N] ")
 
-    if answer:lower() == "y" then
-        return true
-    else
-        return false
+    if answer:lower() ~= "y" then
+        print("pues: operation aborted")
+        os.exit(0)
     end
 end
 
 ---Highest of two arguments
----@param x string
----@param y string
----@return number result x = 1, y = 2, same = 3
+---@param x number
+---@param y number
+---@return number result
 function _G.highest(x, y)
-    if y == "scm-1" then
-        return 3 -- if it's a developer version, don't care
-    end
-
-    local nx = x:gsub("%.", ""):gsub("%-", "")
-    local ny = y:gsub("%.", ""):gsub("%-", "")
-
-    if nx == ny then
-        return 3
-    elseif nx > ny then
-        return 1
-    else
-        return 2
-    end
+    return x - y
 end
 
 ---Check if version is outdated
 ---@param version string
----@param project boolean
-function _G.check_version(version, project)
-    local result = highest(Version, version)
-    if result == 1 then
-        local agreed
-        if project == false then
-            agreed = assure(string.format("Are you sure? Blueprint config has an older version (%s) than current program version (%s). Using this config can have consequences.", version, Version))
-        else
-            agreed = assure(string.format("Are you sure? Project config has an older version (%s) than current program version (%s). Using this config can have consequences.", version, Version))
+function _G.check_version(version)
+    if Version ~= "scm-1" and version ~= "scm-1" then
+        local major, minor, _ = version:match("^(%d+)%.(%d+)%-(%d+)$")
+        local pmajor, pminor, _ = Version:match("^(%d+)%.(%d+)%-(%d+)$")
+
+        local diff = pmajor - major
+        if diff > 0 then -- pues version is higher
+            printf("pues: given blueprint is too outdated, see 'pues config --help' for a possible fix, (%s>%s)", Version, version)
+            os.exit(1)
+        elseif diff < 0 then -- pues version is lower
+            printf("pues: given blueprint is too new, update pues to use this blueprint, (%s<%s)", Version, version)
+            os.exit(1)
         end
-        if not agreed then
-            print("pues: operation aborted")
-            os.exit(0)
+
+        diff = pminor - minor
+        if diff > 0 then
+            if diff > 2 then
+                printf("pues: given blueprint is too outdated, see 'pues config --help' for a possible fix, (%s>%s)", Version, version)
+                os.exit(1)
+            else
+                assure("Given blueprint is outdated, but it may still function. Do you want to try?")
+            end
+        elseif diff < 0 then
+            printf("pues: given blueprint is too new, update pues to use this blueprint, (%s<%s)", Version, version)
+            os.exit(1)
         end
-    elseif result == 2 then
-        if project == false then
-            printf("pues: blueprint config version (%s) is higher than program version (%s)", version, Version)
-        else
-            printf("pues: project config version (%s) is higher than program version (%s)", version, Version)
-        end
+    elseif version == "scm-1" then
+        print("pues: cannot use scm-1 versioned blueprint")
         os.exit(1)
     end
 end

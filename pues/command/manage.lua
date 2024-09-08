@@ -63,7 +63,7 @@ return function(arg)
     local run = blueprint_table["run"]
     local dependencies = blueprint_table["dependencies"]
 
-    check_version(version, false)
+    check_version(version)
 
     local local_config = {
         name = name,

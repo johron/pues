@@ -61,7 +61,7 @@ return function(arg)
     local marked = blueprint_table["marked"]
     local dependencies = blueprint_table["dependencies"]
 
-    check_version(version, false)
+    check_version(version)
 
     if io.dir_name(lfs.currentdir()) ~= project_name then
         if not io.exists(project_name) then
@@ -105,8 +105,8 @@ return function(arg)
     if readme == true then
         local readme_str = string.format("# %s", project_name, blueprint_name)
 
-        if build then readme_str = readme_str .. "\n\n## Build\n- `pues build`" end
-        if run then readme_str = readme_str .. "\n\n## Run\n- `pues run`" end
+        if build then readme_str = readme_str .. "\n\n## Build\n- 'pues build'" end
+        if run then readme_str = readme_str .. "\n\n## Run\n- 'pues run'" end
 
         io.write_file("README.md", readme_str)
     end

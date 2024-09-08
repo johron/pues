@@ -73,6 +73,11 @@ local blueprints = {
 
 ---Write premade blueprints
 local function write_blueprints()
+    local p = PuesPath:gsub("/pues", "")
+    if not io.exists(p) then
+        lfs.mkdir(p)
+    end
+
     if not io.exists(PuesPath) then
         lfs.mkdir(PuesPath)
     end

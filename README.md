@@ -2,14 +2,11 @@
 - Initialize and manage projects easily with json blueprints
 
 ## Install
+- see [dependencies](#dependencies) before installation
 ```bash
 luarocks install pues
-```
-- \*The dependency luazip is dependent on zzip which may not be preinstalled\*
 
-## Todo
-- [ ] Update this readme to have better help on how to test/run/build and develop
-- [ ] Write better comments for functions or give better names
+```
 
 ## Blueprint documentation
 - `version`: The version this blueprint was made for
@@ -54,26 +51,28 @@ luarocks install pues
 }
 ```
 
-## Building
-- Make sure necessary dependencies are installed, see latest rockspec
+## Dependencies
+- zzip.h, can be installed with 'apt install zziplib-dev', 'dnf install zziplib-devel'
+- for rest see latest rockspec in [rockspecs](./rockspecs/), these are installed automatically when using luarocks
+
+## Building with luarocks
 ```bash
-luarocks make rockspecs/pues-(version).rockspec
+luarocks make rockspecs/pues-<version>.rockspec
 ```
 
-## Testing / Running local project
-- Make sure pues is installed as the scm-1 version if you have built by luarocks to test or **remove** pues.
-    - This is because lua tries running the installed modules instead of the local modules from source control.
-- Make sure necessary dependencies are installed, see latest rockspec
-- Using the Dockerfile is recommended as it keeps everything nice and isolated
+## Testing
+- Using the docker and the provided [Dockerfile](./Dockerfile) is recommended when testing
 
-### From source control
+### With luarocks (recommended)
 ```bash
-lua pues/main.lua
+luarocks make rockspecs/pues-<version>.rockspec
+pues --version
 ```
 
-### From rockspec built version
+## Without luarocks
 ```bash
-pues
+lua pues/main.lua --version
 ```
+
 ## License
 - This source code is subject to the terms of the GNU General Public License, version 3. [License](./LICENSE.md)

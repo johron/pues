@@ -46,6 +46,12 @@ pues --version
                 "example@2.1.5",
                 "package"
             ]
+        },
+        "luarocks": {
+            "command": "luarocks install",
+            "packages": [
+                "module 1.2-3"
+            ]
         }
     }
 }

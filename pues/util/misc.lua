@@ -7,8 +7,6 @@
  - file, You can obtain one at: https://www.gnu.org/licenses/gpl-3.0.txt
  --]]
 
-local json = require("pues.util.json")
-
 ---Ask for assurance from user
 ---@param msg string
 function _G.assure(msg)
@@ -18,14 +16,6 @@ function _G.assure(msg)
         print("pues: operation aborted")
         os.exit(0)
     end
-end
-
----Highest of two arguments
----@param x number
----@param y number
----@return number result
-function _G.highest(x, y)
-    return x - y
 end
 
 ---Check if version is outdated
@@ -56,7 +46,7 @@ function _G.check_version(version)
             printf("pues: given blueprint is too new, update pues to use this blueprint, (%s<%s)", Version, version)
             os.exit(1)
         end
-    elseif version == "scm-1" then
+    elseif version == "scm-1" and Version ~= "scm-1" then
         print("pues: cannot use scm-1 versioned blueprint")
         os.exit(1)
     end

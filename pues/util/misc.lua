@@ -64,6 +64,8 @@ local function execute_command(command)
     return result:gsub("\n", "")
 end
 
+---Get current user
+---@return string user
 function _G.get_user()
     local wh_user = execute_command("whoami")
     if wh_user ~= "" and wh_user ~= "root" then

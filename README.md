@@ -5,7 +5,7 @@
 - see [dependencies](#dependencies) before installation
 ```bash
 luarocks install pues
-
+pues --version
 ```
 
 ## Blueprint documentation

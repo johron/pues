@@ -1,8 +1,8 @@
 package = "pues"
-version = "scm-1"
+version = "1.1-1"
 source = {
    url = "git+https://github.com/johron/pues",
-   branch = "master"
+   tag = "1.1-1"
 }
 description = {
    summary = "Initialize and manage projects easily with json blueprints",

@@ -12,32 +12,33 @@ local json = require("pues.util.json")
 require("pues.util.io")
 require("pues.util.misc")
 
-local function loop_over_and_exec(conf, isrun, arg)
-    local isrun = isrun or false
-    local arg = arg or nil
+local function loop_over_and_exec(conf, arg)
+    local curr_arg = 2
 
-    for i, v in ipairs(conf) do
-        local add = ""
-
-        if i == 1 and isrun then
-            local newarg = {}
-
-            if isrun then
-                for i, v in ipairs(arg) do
-                    if i ~= #arg then
-                        table.insert(newarg, v)
-                    end
+    for _, v in pairs(conf) do
+        print(_)
+        local new_v = string.split(v, " ")
+        print(new_v)
+        for i, str in pairs(new_v) do
+            print(i, str)
+            if str == "%{arg}" then
+                print(str)
+                if not arg[curr_arg] then
+                    printf("pues: configuration expects (an) argument(s): '%s'", v)
+                    os.exit(1)
                 end
+                new_v[i] = arg[curr_arg]
+                print(new_v)
+                curr_arg = curr_arg + 1
             end
-
-            add = " " .. table.concat(newarg, " ")
         end
+        v = table.concat(new_v, " ")
+        print(v)
 
-        local error_code = os.execute(v .. add .. " 2>&1")
+        local error_code = os.execute(v .. " 2>&1")
         if error_code ~= 0 then
             os.exit(1)
         end
-
     end
 end
 
@@ -76,14 +77,14 @@ return function(arg, mode)
             os.exit(1)
         end
 
-        loop_over_and_exec(conf)
+        loop_over_and_exec(conf, arg)
     elseif mode == "run" then
         if not conf or #conf == 0 and conf == nil then
             print("pues: run table is empty or not defined")
             os.exit(1)
         end
 
-        loop_over_and_exec(conf, true, arg)
+        loop_over_and_exec(conf, arg)
     else
         print("pues: mode is wrong?")
         os.exit(1)

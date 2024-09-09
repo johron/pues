@@ -175,6 +175,7 @@ local function reload_custom_blueprints()
                     managed = old_blueprint["managed"],
                     build = old_blueprint["build"],
                     run = old_blueprint["run"],
+                    dependencies = old_blueprint["dependencies"],
                 }
 
                 write_blueprint(v, blueprint)

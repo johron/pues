@@ -10,7 +10,6 @@ pues --version
 
 ## Todo
 - [ ] Add to run and build in config: {arg}, which is infinite first {arg} takes first left over arugment then {arg} takes second left over
-- [x] Add dependencies to blueprints
 
 ## Blueprint documentation
 - `version`: The version this blueprint was made for

@@ -15,8 +15,8 @@ pues --version
     - default = false
 - `managed`?: If the project should be managed by pues
     - default = true
-- `build`?: Table of shell commands
-- `run`?: Table of shell commands
+- `build`?: Table of shell commands (This can have "%{arg}" in it to tunnel arguments into the pues command)
+- `run`?: Table of shell commands   (This can have "%{arg}" in it to tunnel arguments into the pues command)
 - `marked`?: Files where '%{name}' should be replaced with project name
 - `dependencies`?: Project dependencies
     - Table with name as the package manager name
@@ -34,7 +34,7 @@ pues --version
         "tsc src/main.ts"
     ],
     "run": [
-        "ts-node src/main.ts"
+        "ts-node src/main.ts %{arg}"
     ],
     "marked": [
         "package.json"

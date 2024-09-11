@@ -22,7 +22,7 @@ end
 
 local blueprints = {
     ["blank"] = {
-        version = Version,
+        version = Version
     },
     ["python"] = {
         version = Version,
@@ -30,7 +30,7 @@ local blueprints = {
         readme = true,
         run = {
             "python3 src/main.py"
-        },
+        }
     },
     ["nodejs"] = {
         version = Version,
@@ -38,7 +38,7 @@ local blueprints = {
         readme = true,
         run = {
             "node src/main.js"
-        },
+        }
     },
     ["lua"] = {
         version = Version,
@@ -46,14 +46,6 @@ local blueprints = {
         readme = true,
         run = {
             "lua src/main.lua"
-        },
-        dependencies = {
-            luarocks = {
-                command = "luarocks install",
-                packages = {
-                    "lua-cjson"
-                }
-            }
         }
     },
     ["gcc"] = {

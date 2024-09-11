@@ -10,7 +10,7 @@
 require("pues.util.io")
 require("pues.util.misc")
 
-Version = "scm-1"
+Version = "1.1-2"
 PuesPath = string.format("/home/%s/.config/pues/", get_user())
 
 if not io.exists(PuesPath) or io.is_dir_empty(PuesPath) then

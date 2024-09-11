@@ -18,12 +18,12 @@ local function loop_over_and_exec(conf, arg)
     for _, v in pairs(conf) do
         local words = {}
         for word in v:gmatch("%S+") do
-            if word == "%{arg}" then
+            if word:find("%{arg}") then
                 if not arg[curr_arg] then
                     printf("pues: configuration expects (an) argument(s): '%s'", v)
                     os.exit(1)
                 end
-                table.insert(words, arg[curr_arg])
+                table.insert(words, (word:gsub("%%{arg}", arg[curr_arg])))
                 curr_arg = curr_arg + 1
             else
                 table.insert(words, word)

@@ -98,14 +98,3 @@ function _G.get_user()
     print("pues: couldn't get current user")
     os.exit(1)
 end
-
-function string.split(input, sep)
-    if sep == nil then
-        sep = "%s"
-    end
-    local t = {}
-    for str in input:gmatch(input, sep) do
-        table.insert(t, str)
-    end
-    return t
-end

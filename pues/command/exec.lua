@@ -16,24 +16,20 @@ local function loop_over_and_exec(conf, arg)
     local curr_arg = 2
 
     for _, v in pairs(conf) do
-        print(_)
-        local new_v = string.split(v, " ")
-        print(new_v)
-        for i, str in pairs(new_v) do
-            print(i, str)
-            if str == "%{arg}" then
-                print(str)
+        local words = {}
+        for word in v:gmatch("%S+") do
+            if word == "%{arg}" then
                 if not arg[curr_arg] then
                     printf("pues: configuration expects (an) argument(s): '%s'", v)
                     os.exit(1)
                 end
-                new_v[i] = arg[curr_arg]
-                print(new_v)
+                table.insert(words, arg[curr_arg])
                 curr_arg = curr_arg + 1
+            else
+                table.insert(words, word)
             end
         end
-        v = table.concat(new_v, " ")
-        print(v)
+        v = table.concat(words, " ")
 
         local error_code = os.execute(v .. " 2>&1")
         if error_code ~= 0 then

@@ -65,7 +65,7 @@ return function(arg)
             local result = handle:read("*a")
             local success, exit_Type, exit_code = handle:close()
 
-            if (result and result ~= "") and (exit_code == 1 or success ~= true) then
+            if (result and result ~= "") or exit_code == 1 or success ~= true then
                 local cleaned = result:gsub("\n$", ""):gsub("^\n", "")
                 if cleaned ~= nil then
                     printf("pues: error installing '%s' from '%s':", pkg, i)

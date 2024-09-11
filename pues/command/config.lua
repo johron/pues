@@ -47,6 +47,14 @@ local blueprints = {
         run = {
             "lua src/main.lua"
         },
+        dependencies = {
+            luarocks = {
+                command = "luarocks install",
+                packages = {
+                    "lua-cjson"
+                }
+            }
+        }
     },
     ["gcc"] = {
         version = Version,

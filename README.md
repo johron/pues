@@ -8,6 +8,10 @@ luarocks install pues
 pues --version
 ```
 
+# Todo
+- [ ] I de auto genererte readme-ene i pues blir kommandene skrevet som 'print' istedenfor print()
+- [ ] Legg til melding i readme at dette er generert med pues og at for å bruke denne konfigurasjonen må en bruke pues
+
 ## Blueprint documentation
 - `version`: The version this blueprint was made for
 - `source`?: Name of zip archive located in '~/.config/pues/archives/' without extention
